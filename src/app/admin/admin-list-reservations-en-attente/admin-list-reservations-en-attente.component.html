@@ -1,0 +1,77 @@
+<div class="mat-elevation-z0 p-3">
+  <div class="list-att">Liste d'attente:</div>
+  <table mat-table [dataSource]="reservations">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email</th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type</th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="dateDebut">
+      <th mat-header-cell *matHeaderCellDef> DateDebut</th>
+      <td mat-cell *matCellDef="let element"> {{element.dateDebut}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="dateFin">
+      <th mat-header-cell *matHeaderCellDef> DateFin</th>
+      <td mat-cell *matCellDef="let element">{{element.dateFin}} </td>
+    </ng-container>
+
+    <!-- Symbol Column-->
+
+
+    <ng-container matColumnDef="Annuler">
+      <th mat-header-cell class="align" *matHeaderCellDef> Annuler</th>
+      <td mat-cell class="align" *matCellDef="let element"><span (click)="annuler(element)">
+        <button class="btn-white btn"><i class=" fa-solid fa-xmark"></i></button></span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="disponibilite">
+      <th mat-header-cell class="align" *matHeaderCellDef> Disponibilite</th>
+      <td mat-cell class="align" *matCellDef="let element"><span (click)="showBasicDialog(element.type,element)">
+        <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->
+
+
+<p-dialog header="Disponibilite chambre " [(visible)]="displayBasic1" [style]="{width: '50vw'}" [baseZIndex]="10000">
+
+  <app-admin-list-disponible-chambre></app-admin-list-disponible-chambre>
+
+   <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic1=false" label="Ok" styleClass="p-button-text"></p-button>
+<!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
+  </ng-template>
+</p-dialog>
+
+
+<p-dialog header="Disponibilite Bungalow" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+
+  <app-admin-list-disponible-bungalow></app-admin-list-disponible-bungalow>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic2=false" label="Ok" styleClass="p-button-text"></p-button>
+    <!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
+  </ng-template>
+</p-dialog>

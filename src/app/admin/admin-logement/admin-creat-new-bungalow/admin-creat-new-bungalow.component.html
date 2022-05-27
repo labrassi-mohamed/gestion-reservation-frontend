@@ -1,0 +1,57 @@
+<div class="p-fluid p-grid">
+
+  <div class="p-field p-col-12 p-md-3">
+    <span class="p-float-label">
+      <input type="text" id="number" pInputText [(ngModel)]="bungalow.numberBungalow" />
+      <label for="number">No.</label>
+    </span>
+  </div>
+
+  <div class="p-field p-col-12 p-md-3">
+    <span class="p-float-label">
+      <input type="text" id="reference" pInputText [(ngModel)]="bungalow.reference" />
+      <label for="reference">Reference</label>
+    </span>
+  </div>
+
+  <div class="p-field p-col-12 p-md-3">
+    <span class="p-float-label">
+      <input type="text" id="espace" pInputText [(ngModel)]="bungalow.espace" />
+      <label for="espace">Espace</label>
+    </span>
+  </div>
+
+  <div class="p-field p-col-12 p-md-3">
+    <span class="p-float-label">
+      <input type="text" id="capacity" pInputText [(ngModel)]="bungalow.capacity" />
+      <label for="capacity">Capacity</label>
+    </span>
+  </div>
+
+  <div class="p-field p-col-12 p-md-3">
+    <span class="p-float-label">
+      <input type="text" id="prix" pInputText [(ngModel)]="bungalow.prix" />
+      <label for="prix">Prix</label>
+    </span>
+  </div>
+
+  <div class="p-field p-col-12 p-md-3">
+    <span class="p-float-label">
+      <textarea
+        inputId="description"
+        rows="4"
+        cols="54"
+        [(ngModel)]="bungalow.description"
+        pInputTextarea
+      ></textarea>
+      <label for="description">Description</label>
+    </span>
+  </div>
+
+  <div class=" align-center p-field p-col-12 p-md-3">
+    <button type="button" class=" btn btn-outline-success form-control" (click)="saveBungalow()">Add</button>
+  </div>
+
+
+
+</div>

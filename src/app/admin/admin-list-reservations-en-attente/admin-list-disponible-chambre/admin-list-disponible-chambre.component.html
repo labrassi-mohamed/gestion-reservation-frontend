@@ -1,0 +1,58 @@
+<div class="mat-elevation-z0 p-3">
+  <table mat-table [dataSource]="chambres" >
+
+
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="numero">
+      <th mat-header-cell *matHeaderCellDef> NO. </th>
+      <td mat-cell *matCellDef="let element"> {{element.numberChambre}}  </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="espace">
+      <th mat-header-cell *matHeaderCellDef> Espace </th>
+      <td mat-cell *matCellDef="let element"> {{element.espace}} m²  </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="capacity">
+      <th mat-header-cell *matHeaderCellDef> Capacity </th>
+      <td mat-cell *matCellDef="let element"> {{element.capacity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prix">
+      <th mat-header-cell *matHeaderCellDef> Prix </th>
+      <td mat-cell *matCellDef="let element"> {{element.prix}} Dh</td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="confirmer">
+      <th class="align"  mat-header-cell *matHeaderCellDef> Reserver </th>
+      <td class="align" mat-cell *matCellDef="let element"><span (click)="chambrevar(element)">
+        <button class="btn-white btn"><i class="fa-solid fa-check"></i></button></span> </td>
+    </ng-container>
+
+ <ng-container matColumnDef="calender">
+      <th class="align"  mat-header-cell *matHeaderCellDef> calender </th>
+   <td mat-cell *matCellDef="let element"> <p-calendar [(ngModel)]="date10" inputId="template">
+     <ng-template pTemplate="date" let-date>
+       <span [ngStyle]="{backgroundColor: (date.day < 21 && date.day > 10) ? '#81C784' : 'inherit'}" style="border-radius:50%; padding: .25em; width: 2em; height: 2em; display:block">{{date.day}}</span>
+     </ng-template>
+   </p-calendar></td>
+ </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+<!--  <mat-paginator [pageSizeOptions]="[5, 10, 20]"-->
+<!--                 showFirstLastButtons-->
+<!--                 aria-label="Select page of periodic elements">-->
+<!--  </mat-paginator>-->
+</div>

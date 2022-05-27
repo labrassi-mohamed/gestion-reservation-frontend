@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<section class="banner">
+  <a class="noneDecoration" routerLink="reservation">
+    <h2>Demande de Reservation</h2>
+  </a>
+  <div class="card-container">
+    <div class="card-img">
+      <!-- image here -->
+    </div>
+    <div class="card-content">
+      <h3>Demande</h3>
+      <form
+            #reservationForm="ngForm"
+            (ngSubmit)="onRegister(reservationForm)">
+        <div class="form-row">
+          <select name="type" id="type" [(ngModel)]="reservation.type">
+            <option value="type" selected disabled>Sélectionnez un Type</option>
+            <option value="chambre">Chambre</option>
+            <option value="bungalow">Bungalow</option>
+          </select>
+        </div>
+
+        <div class="form-row has-validation" >
+          <input type="beneficiaire" placeholder="Bénéficiaire"
+                 required ngModel name="beneficiaire"
+                 [(ngModel)]="reservation.beneficiaire">
+        </div>
+
+        <div class="form-row">
+          <input type="date" id="dateDebut"
+                 required ngModel name="dateDebut"
+                 [(ngModel)]="reservation.dateDebut">
+          <input type="date" id="dateFin"
+                 required ngModel name="dateFin"
+                 [(ngModel)]="reservation.dateFin">
+        </div>
+
+        <div class="form-row">
+          <input type="submit" value="Suivant"
+                 [disabled]="reservationForm.invalid"
+                 (click)="demandeReservation()">
+        </div>
+
+      </form>
+    </div>
+<!--    {{reservation | json}}-->
+  </div>
+</section>

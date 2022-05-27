@@ -1,0 +1,44 @@
+mat-toolbar{
+  position:sticky;
+  top:0;
+  z-index: 100;
+  background: rgba(234, 229, 221, 0.76);
+}
+ul{
+  li{
+    list-style: none;
+  }
+}
+button{
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.user{
+  font-size: 14px;
+}
+.user-image{
+  border-radius:50% ;
+  width: 65px;
+  height: 65px;
+padding-right: 10px}
+
+.fa-bars{
+  color:#ff6e40;
+}
+.user-image-icon{
+  height: 18px;
+  font-size: 16px;
+}
+.fa-angle-down{
+  margin-left: 5px;
+
+}
+::ng-deep{
+  .mat-menu-content{
+    width:160px ;
+  }
+}
+.fa-user{
+  margin-right: 6px;
+}

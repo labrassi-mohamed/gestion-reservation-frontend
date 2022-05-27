@@ -1,0 +1,172 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+
+    <!--    navbar-->
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/" class="text-decoration-none">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!--    End navbar-->
+
+    <div class="row">
+      <div class="col-lg-4">
+
+        <!-- card profil-->
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://pic.onlinewebfonts.com/svg/img_329115.png" alt="Photo de profile"
+                 class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">Nom et Prenom</h5>
+            <p class="text-muted mb-1">email.email@gmail.com</p>
+            <p class="text-muted mb-4">06-*********</p>
+            <div class="d-flex justify-content-center mb-2">
+            </div>
+          </div>
+        </div>
+        <!-- End card profil-->
+
+        <!--        <div class="card mb-4 mb-lg-0">-->
+        <!--          <div class="card-body p-0">-->
+        <!--            <ul class="list-group list-group-flush rounded-3">-->
+        <!--              <li class="list-group-item d-flex justify-content-between align-items-center p-3">-->
+        <!--                <i class="fas fa-globe fa-lg text-warning"></i>-->
+        <!--                <p class="mb-0">https://mdbootstrap.com</p>-->
+        <!--              </li>-->
+        <!--              <li class="list-group-item d-flex justify-content-between align-items-center p-3">-->
+        <!--                <i class="fab fa-github fa-lg" style="color: #333333;"></i>-->
+        <!--                <p class="mb-0">mdbootstrap</p>-->
+        <!--              </li>-->
+        <!--              <li class="list-group-item d-flex justify-content-between align-items-center p-3">-->
+        <!--                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>-->
+        <!--                <p class="mb-0">@mdbootstrap</p>-->
+        <!--              </li>-->
+        <!--              <li class="list-group-item d-flex justify-content-between align-items-center p-3">-->
+        <!--                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>-->
+        <!--                <p class="mb-0">mdbootstrap</p>-->
+        <!--              </li>-->
+        <!--              <li class="list-group-item d-flex justify-content-between align-items-center p-3">-->
+        <!--                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>-->
+        <!--                <p class="mb-0">mdbootstrap</p>-->
+        <!--              </li>-->
+        <!--            </ul>-->
+        <!--          </div>-->
+        <!--        </div>-->
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Preom</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{adherentObject.prenom}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nom</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">Johnatan Smith</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">example@example.com</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">(098) 765-4321</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- End row-->
+<!-- row-->
+      <div class="row">
+        <h2 class="p-2 h1 ps-5 text-decoration-underline">Ma demande</h2>
+        <div class="col-lg-12 col-sm-12 col-md-12">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Demande Date</th>
+              <th scope="col">Beneficiaire</th>
+              <th scope="col">DateDebut</th>
+              <th scope="col">DateFin</th>
+              <th scope="col">Etat</th>
+              <th scope="col" class="view" >Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Otto</td>
+              <td><i class="fa fa-circle me-1" style="color: #08e30b;"></i>Valide</td>
+              <td class="view"><i class="fa fa-lg fa-eye btn btn-sm"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Otto</td>
+              <td><i class="fa fa-circle me-1" style="color: #ea8857;"></i>En Cours...</td>
+              <td class="view"><i class="fa fa-lg fa-eye btn btn-sm"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Otto</td>
+              <td><i class="fa fa-circle me-1" style="color: #d2c606;"></i>Validation Partielle</td>
+              <td class="view"><i class="fa fa-lg fa-eye btn btn-sm"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Otto</td>
+              <td><i class="fa fa-circle me-1" style="color: #f80505;"></i>Reject</td>
+              <td class="view"><i class="fa fa-lg fa-eye btn btn-sm"></i></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<!-- End row-->
+  </div>
+</section>

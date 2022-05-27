@@ -1,0 +1,70 @@
+<div class="new-bungalow">
+  <label class="add" style="padding-right: 10px">add new Bungalow :</label>
+  <button type="button" class="btn btn-outline-success" (click)="showBasicDialog() " style="padding: 0.3rem 0.65rem;
+    font-size: 0.8rem;" ><i class="fa-solid fa-plus"></i></button>
+</div>
+<div>
+<div class="mat-elevation-z0 p-3">
+  <table mat-table [dataSource]="bungalows" >
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="numero">
+      <th mat-header-cell *matHeaderCellDef> NO. </th>
+      <td mat-cell *matCellDef="let element"> {{element.numberBungalow}}  </td>
+    </ng-container>
+
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="espace">
+      <th mat-header-cell *matHeaderCellDef> Espace </th>
+      <td mat-cell *matCellDef="let element"> {{element.espace}} m² </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="capacity">
+      <th mat-header-cell *matHeaderCellDef> Capacity </th>
+      <td mat-cell *matCellDef="let element"> {{element.capacity}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prix">
+      <th mat-header-cell *matHeaderCellDef> Prix </th>
+      <td mat-cell *matCellDef="let element"> {{element.prix}} Dh</td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="delete">
+      <th class="align"  mat-header-cell *matHeaderCellDef> Delete </th>
+      <td class="align" mat-cell *matCellDef="let element"><span (click)="delete(element.reference)">
+        <button class="btn-white btn">
+        <i class="fa-solid fa-circle-minus"></i> </button></span> </td>
+
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+</div>
+
+
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->
+<p-dialog header="New Bungalow " [(visible)]="displayBasic" [style]="{width: '40vw'}" [baseZIndex]="10000">
+  <app-admin-creat-new-bungalow></app-admin-creat-new-bungalow>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+    <!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
+  </ng-template>
+</p-dialog>

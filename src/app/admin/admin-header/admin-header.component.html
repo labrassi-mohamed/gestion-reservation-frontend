@@ -1,0 +1,24 @@
+<mat-toolbar>
+  <mat-toolbar-row class="justify-content-between">
+    <button mat-icon-button (click)="togglesidebar()"><i class="fa-solid fa-bars"></i></button>
+    <div class="row mr-2 ml-auto">
+      <ul>
+        <li>
+<!--          <mat-menu #menu="matMenu"></mat-menu>-->
+          <button mat-button [matMenuTriggerFor]="menu" class="user mt-2  d-flex align-items-center">
+          <i class="fa-solid fa-user"></i>
+           <div class="uu">User Name</div>
+            <i class="user-image-icon ml-1" class="fa-solid fa-angle-down "></i>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              Logout
+            </button>
+          </mat-menu>
+        </li>
+
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
