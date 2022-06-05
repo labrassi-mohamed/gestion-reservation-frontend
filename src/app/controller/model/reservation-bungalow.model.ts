@@ -1,8 +1,9 @@
 import {Adherent} from "./adherent.model";
+import {Bungalow} from "./bungalow.model";
 
-export class Reservation {
+export class ReservationBungalow {
   public id?: number;
-  public username: string;
+  public code:string;
   public beneficiaire: string;
   public type: string;
   public dateDebut: Date;
@@ -14,7 +15,8 @@ export class Reservation {
   public reject: boolean;
   public confirmationP: boolean;
   public adherent: Adherent;
-  public dateDebutHelp: string;
-  public dateFinHelp: string;
+  public dateDebutHelp:string;
+  public dateFinHelp:string;
+  public bungalow:Bungalow;
 
 }

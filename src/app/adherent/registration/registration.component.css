@@ -1,4 +1,6 @@
-
+.form-control.ng-touched.ng-invalid{
+  border: 1px solid red;
+}
 /*.example-form {*/
 /*  min-width: 150px;*/
 /*  max-width: 500px;*/

@@ -3,40 +3,41 @@
   <div class="container py-5 h-90">
     <div class="row d-flex justify-content-center align-items-center h-90 mt-5">
       <div class="col col-xl-7">
-        <div class="card" style="border-radius: .3rem;">
+        <div class="card rounded-3" style="border-radius: .3rem;">
+          <img src="../../../assets/images/jemaa.jpg"
+               class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+               alt="Sample photo">
           <div class="row g-0 -flex justify-content-center align-items-center">
             <div class="col-md-10 col-lg-11 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
-                <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-                  <div class="d-flex align-items-center mb-3 pb-1">
-                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                    <span class="h1 fw-bold mb-0">Logo</span>
-                  </div>
-                  <h6 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
+              <div class="card-body p-4 pt-lg-4 p-lg-5 text-black">
+                <form [formGroup]="loginForm">
+                  <h5 class="fw-normal mb-3 pb-3 pe-1" style="letter-spacing: 1px;">
                     * Connectez-vous pour commencer votre session
-                  </h6>
-
+                  </h5>
+                  <p-message></p-message>
                   <div class="form-outline mb-4">
                     <label class="form-label" for="email">Adresse Email</label>
                     <input type="email" id="email" placeholder="Exemple@gmail.com"
                            class="form-control form-control-lg"
+                           formControlName="username"
                            required name="email"
-                           [(ngModel)]="login.email" />
+                           />
                   </div>
-
                   <div class="form-outline mb-1">
                     <label class="form-label" for="password">Mot de passe</label>
                     <input type="password" id="password" placeholder="****************"
                            class="form-control form-control-lg"
-                           required ngModel name="password"
-                           [(ngModel)]="login.password"/>
+                           formControlName="password"
+                           required name="password"
+                           />
                   </div>
 
                   <a class="small text-muted pb-3">Mot de passe oublié ?</a>
 
                   <div class="pt-1 mb-4">
                     <button class="btn btn-dark btn-lg btn-block" type="submit"
-                            [disabled]="loginForm.invalid">Se connecter</button>
+                           (click)="submit()" >Se connecter
+                    </button>
                   </div>
 
                   <p class="mb-3 pb-lg-2" style="color: #393f81;">Je n'ai pas de compte ?
@@ -55,6 +56,6 @@
         </div>
       </div>
     </div>
-<!--    {{login | json}}-->
+    <!--    {{login | json}}-->
   </div>
 </section>

@@ -7,7 +7,6 @@ import {SigninComponent} from './adherent/signin/signin.component';
 import {LoginadminComponent} from "./admin/loginadmin/loginadmin.component";
 import {AccueiladminComponent} from "./admin/accueiladmin/accueiladmin.component";
 import {AdminComponent} from "./admin/admin.component";
-import {AdminListReservationsEnAttenteComponent} from "./admin/admin-list-reservations-en-attente/admin-list-reservations-en-attente.component";
 import {AdminReservationsComponent} from "./admin/admin-reservations/admin-reservations.component";
 import {ChambreComponent} from "./adherent/logements/chambre/chambre.component";
 import {BongaloComponent} from "./adherent/logements/bongalo/bongalo.component";
@@ -15,24 +14,29 @@ import {RegistrationComponent} from "./adherent/registration/registration.compon
 import {ProfileComponent} from "./adherent/profile/profile.component";
 import {AdminLogementComponent} from "./admin/admin-logement/admin-logement.component";
 import {AdminAdherentsComponent} from "./admin/admin-adherents/admin-adherents.component";
+import {AuthGuard} from "./controller/auth/auth.guard";
 
 const routes: Routes = [
   {path: "", component: HomeComponent,},
   {path: "login", component: LoginComponent},
   {path: "login", component: LoginComponent},
-  {path: "reservation", component: ReservationComponent},
   {path: "signin", component: SigninComponent},
   {path: "chambre", component: ChambreComponent},
   {path: "bongalo", component: BongaloComponent},
   {path: "registration", component: RegistrationComponent},
-  {path: "profile", component: ProfileComponent},
-
+  {path: "reservation",
+    component: ReservationComponent,
+    canActivate: [AuthGuard]
+  },
+  {path: "profile",
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
+  },
   {path: "admin",
     component: AdminComponent,
     children: [
       {path: "accueil", component: AccueiladminComponent},
       {path: "loginadmin", component: LoginadminComponent},
-      {path: "reservationenattente", component: AdminListReservationsEnAttenteComponent},
       {path: "reservations", component: AdminReservationsComponent},
       {path: "logement", component: AdminLogementComponent},
       {path: "adherents", component: AdminAdherentsComponent},

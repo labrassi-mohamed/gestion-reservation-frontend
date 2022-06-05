@@ -1,6 +1,6 @@
 export class Registration {
   public id?: number;
-  public nom: String;
-  public prenom: String;
-  public email: String;
+  public nom: string;
+  public prenom: string;
+  public email: string;
 }

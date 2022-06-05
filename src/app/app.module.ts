@@ -19,7 +19,7 @@ import {SigninComponent} from "./adherent/signin/signin.component";
 import {AdminComponent} from './admin/admin.component';
 import {LoginadminComponent} from './admin/loginadmin/loginadmin.component';
 import {ClientComponent} from './adherent/client.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AdminHeaderComponent} from './admin/admin-header/admin-header.component';
 import {AdminSidenavComponent} from './admin/admin-sidenav/admin-sidenav.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -28,17 +28,20 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
-import { AdminListReservationsEnAttenteComponent} from './admin/admin-list-reservations-en-attente/admin-list-reservations-en-attente.component';
 import {AdminReservationsComponent} from './admin/admin-reservations/admin-reservations.component';
-import { AdminReservationsActuelleComponent } from './admin/admin-reservations-actuelle/admin-reservations-actuelle.component';
-import { AdminReservationsHistoriqueComponent } from './admin/admin-reservations-historique/admin-reservations-historique.component';
+import {
+  AdminReservationsActuelleComponent
+} from './admin/admin-reservations-actuelle/admin-reservations-actuelle.component';
+import {
+  AdminReservationsHistoriqueComponent
+} from './admin/admin-reservations-historique/admin-reservations-historique.component';
 import {TabViewModule} from "primeng/tabview";
 import {LogementsComponent} from './adherent/home/logements/logements.component';
 import {ChambreComponent} from './adherent/logements/chambre/chambre.component';
 import {BongaloComponent} from './adherent/logements/bongalo/bongalo.component';
 import {RegistrationComponent} from './adherent/registration/registration.component';
 import {MatInputModule} from "@angular/material/input";
-import { ProfileComponent } from './adherent/profile/profile.component';
+import {ProfileComponent} from './adherent/profile/profile.component';
 import {AccueiladminComponent} from "./admin/accueiladmin/accueiladmin.component";
 import {MatTableModule} from "@angular/material/table";
 import {DialogModule} from "primeng/dialog";
@@ -47,23 +50,32 @@ import {AdminLogementChambreComponent} from "./admin/admin-logement-chambre/admi
 import {AdminLogementBungalowComponent} from "./admin/admin-logement-bungalow/admin-logement-bungalow.component";
 import {AdminAdherentsComponent} from "./admin/admin-adherents/admin-adherents.component";
 import {AdminListAdherentsComponent} from "./admin/admin-list-adherents/admin-list-adherents.component";
-import {
-  AdminCreatNewChambreComponent
-} from "./admin/admin-logement/admin-creat-new-chambre/admin-creat-new-chambre.component";
-import {
-  AdminCreatNewBungalowComponent
-} from "./admin/admin-logement/admin-creat-new-bungalow/admin-creat-new-bungalow.component";
-import {
-  AdminListDisponibleChambreComponent
-} from "./admin/admin-list-reservations-en-attente/admin-list-disponible-chambre/admin-list-disponible-chambre.component";
-import {
-  AdminListDisponibleBungalowComponent
-} from "./admin/admin-list-reservations-en-attente/admin-list-disponible-bungalow/admin-list-disponible-bungalow.component";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {SplitButtonModule} from "primeng/splitbutton";
 import {TableModule} from "primeng/table";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MessagesModule} from "primeng/messages";
+import {MessageModule} from "primeng/message";
+import {JwtInterceptor} from "./controller/interceptors/jwt.interceptor";
+import {RippleModule} from "primeng/ripple";
+import {ButtonModule} from "primeng/button";
+import {MessageService} from "primeng/api";
+import {
+  AdminListReservationsEnAttenteBungalowComponent
+} from "./admin/accueiladmin/admin-list-reservations-en-attente-bungalow/admin-list-reservations-en-attente-bungalow.component";
+import {
+  AdminListReservationsEnAttenteChambreComponent
+} from "./admin/accueiladmin/admin-list-reservations-en-attente-chambre/admin-list-reservations-en-attente-chambre.component";
+import {
+  AdminBungalowDisponibleComponent
+} from "./admin/accueiladmin/admin-list-reservations-en-attente-bungalow/admin-bungalow-disponible/admin-bungalow-disponible.component";
+import {
+  AdminChambreDisponibleComponent
+} from "./admin/accueiladmin/admin-list-reservations-en-attente-chambre/admin-chambre-disponible/admin-chambre-disponible.component";
+import {
+  AdminCreatNewLogementComponent
+} from "./admin/admin-logement/admin-creat-new-logement/admin-creat-new-logement.component";
 
 @NgModule({
   declarations: [
@@ -75,23 +87,21 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     LoginComponent,
     ReservationComponent,
     SigninComponent,
-    AdminComponent,
-    LoginadminComponent,
     ClientComponent,
-    AdminHeaderComponent,
-    AdminSidenavComponent,
-    AdminListReservationsEnAttenteComponent,
-    AdminReservationsComponent,
-    AdminReservationsActuelleComponent,
-    AdminReservationsHistoriqueComponent,
     LogementsComponent,
     ChambreComponent,
     BongaloComponent,
     RegistrationComponent,
     ProfileComponent,
-    AccueiladminComponent,
     AdminHeaderComponent,
-    AdminListReservationsEnAttenteComponent,
+    AdminSidenavComponent,
+    AdminReservationsComponent,
+    AdminReservationsActuelleComponent,
+    AdminReservationsHistoriqueComponent,
+    AccueiladminComponent,
+    AdminComponent,
+    LoginadminComponent,
+    AdminHeaderComponent,
     AdminReservationsComponent,
     AdminReservationsActuelleComponent,
     AdminReservationsHistoriqueComponent,
@@ -100,11 +110,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     AdminLogementBungalowComponent,
     AdminAdherentsComponent,
     AdminListAdherentsComponent,
-    AdminCreatNewChambreComponent,
-    AdminCreatNewBungalowComponent,
-    AdminListDisponibleChambreComponent,
-    AdminListDisponibleBungalowComponent,
     AdminSidenavComponent,
+    AdminListReservationsEnAttenteBungalowComponent,
+    AdminListReservationsEnAttenteChambreComponent,
+    AdminBungalowDisponibleComponent,
+    AdminChambreDisponibleComponent,
+    AdminCreatNewLogementComponent
   ],
   imports: [
     AppRoutingModule,
@@ -132,8 +143,15 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     TableModule,
     SplitButtonModule,
     MatFormFieldModule,
+    MessagesModule,
+    MessageModule,
+    RippleModule,
+    ButtonModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

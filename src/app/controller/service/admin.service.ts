@@ -4,27 +4,31 @@ import {HttpClient} from "@angular/common/http";
 import {Adherent} from "../model/adherent.model";
 import {Bungalow} from "../model/bungalow.model";
 import {Chambre} from "../model/chambre.model";
+import {ReservationBungalow} from "../model/reservation-bungalow.model";
+import {ReservationChambre} from "../model/reservation-chambre.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-
   private _reservation: Reservation;
-  private _reservations: Array<Reservation>;
+  private  _reservations: Array<Reservation>;
+  private _reservationChambre: ReservationChambre;
+  private _reservationChambres: Array<ReservationChambre>;
+  private _reservationBungalow: ReservationBungalow;
+  private _reservationBungalows: Array<ReservationBungalow>;
   private _chambre: Chambre;
   private _chambres: Array<Chambre>;
   private _bungalow: Bungalow;
   private _bungalows: Array<Bungalow>;
   private _adherents: Array<Adherent>;
   private _adherent: Adherent;
-  private urladmin = 'http://localhost:8090/api/v1/admin';
-
+  private urladmin = 'http://localhost:8080/api/v1/admin';
   constructor(private http: HttpClient) {}
 
   findByreservationenattente() {
-    this.http.get<Array<Reservation>>(this.urladmin + '/reservation/false/false/').subscribe(
+    this.http.get<Array<Reservation>>(this.urladmin  + '/reservation/findAllByConfirmation/false').subscribe(
       data => {
         this.reservations = data;
         console.log('good');
@@ -34,6 +38,7 @@ export class AdminService {
         console.log('error');
       })
   }
+
 
   findallreservation() {
     this.http.get<Array<Reservation>>(this.urladmin + '/reservation/').subscribe(
@@ -74,16 +79,7 @@ export class AdminService {
 
 
   confirmerReservation(reservation: Reservation) {
-    this.http.put<number>(this.urladmin + '/reservation/confirmerReservation/', reservation).subscribe(
-      data => {
-        console.log('good');
-        console.log(data);
-        this.findByreservationenattente();
 
-      }
-      , error => {
-        console.log('error');
-      })
   }
 
   annulerReservation(reservation: Reservation) {
@@ -202,6 +198,84 @@ export class AdminService {
       })
   }
 
+
+  findchambresDisponible(dateDebut:string,dateFin:string) {
+
+    this.http.get<Array<Chambre>>(this.urladmin + '/chambre/ChambreDisponible/'+dateDebut+'/'+dateFin ).subscribe(
+      data => {
+        this.chambres=data;
+        console.log(this.chambres);
+        console.log('gooood chambre dispo');
+      }
+      , error => {
+        console.log('error');
+
+      })
+  }
+
+  findBungalowDisponible(dateDebut: string, dateFin: string) {
+
+    this.http.get<Array<Bungalow>>(this.urladmin + '/bungalow/BungalowDisponible/'+dateDebut+'/'+dateFin ).subscribe(
+      data => {
+        this.bungalows=data;
+        console.log(this.bungalows);
+        console.log('gooood bungalow dispo');
+      }
+      , error => {
+        console.log('error');
+
+      })
+  }
+
+  findByReservationChambreEnAttente() {
+    this.http.get<Array<ReservationChambre>>(this.urladmin  + '/reservationChambre/findByConfirmationAndReject/false/false').subscribe(
+      data => {
+        this.reservationChambres = data;
+        console.log('good');
+        console.log(this._reservationChambres);
+      }
+      , error => {
+        console.log('error');
+      })
+  }
+  findByReservationBungalowEnAttente() {
+    this.http.get<Array<ReservationBungalow>>(this.urladmin  + '/reservationBungalow/findByConfirmationAndReject/false/false').subscribe(
+      data => {
+        this.reservationBungalows = data;
+        console.log('good');
+        console.log(this._reservations);
+      }
+      , error => {
+        console.log('error');
+      })
+  }
+
+  confirmerReservationBungalow(code: string, numero: number) {
+    this.http.put<number>(this.urladmin  + '/reservationBungalow/confirmerReservationBungalow/'+code+'/'+numero,  {}).subscribe(
+      data => {
+        console.log('good confirmation reservation bungalow');
+        console.log(data);
+        console.log(code);
+        this.findByReservationBungalowEnAttente();
+      }
+      , error => {
+        console.log('error confirmation');
+      })
+  }
+
+  confirmerReservationChambre(code: string, numero: number) {
+    this.http.put<number>(this.urladmin  + '/reservationChambre/confirmerReservationChambre/'+code+'/'+numero,  {}).subscribe(
+      data => {
+        console.log('good confirmation reservation chambre');
+        console.log(data);
+        this.findByReservationChambreEnAttente();
+      }
+      , error => {
+        console.log('error confirmation');
+      })
+  }
+
+
   // Getters & Setters
   get adherent(): Adherent {
     if (this._adherent == null) {
@@ -290,4 +364,53 @@ export class AdminService {
   set reservation(value: Reservation) {
     this._reservation = value;
   }
+
+
+  get reservationChambre(): ReservationChambre {
+    if (this._reservationChambre == null) {
+      this._reservationChambre = new ReservationChambre();
+    }
+    return this._reservationChambre;
+  }
+
+  set reservationChambre(value: ReservationChambre) {
+    this._reservationChambre = value;
+  }
+
+  get reservationChambres(): Array<ReservationChambre> {
+
+    if (this._reservationChambres == null) {
+      this._reservationChambres = new Array<ReservationChambre>();
+    }
+    return this._reservationChambres;
+  }
+
+  set reservationChambres(value: Array<ReservationChambre>) {
+    this._reservationChambres = value;
+  }
+
+  get reservationBungalow(): ReservationBungalow {
+
+    if (this._reservationBungalow == null) {
+      this._reservationBungalow = new ReservationBungalow();
+    }
+    return this._reservationBungalow;
+  }
+
+  set reservationBungalow(value: ReservationBungalow) {
+    this._reservationBungalow = value;
+  }
+
+  get reservationBungalows(): Array<ReservationBungalow> {
+
+    if (this._reservationBungalows == null) {
+      this._reservationBungalows = new Array<ReservationBungalow>();
+    }
+    return this._reservationBungalows;
+  }
+
+  set reservationBungalows(value: Array<ReservationBungalow>) {
+    this._reservationBungalows = value;
+  }
+
 }

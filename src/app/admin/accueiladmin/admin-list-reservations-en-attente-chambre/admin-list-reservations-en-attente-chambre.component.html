@@ -1,0 +1,80 @@
+<div class="mat-elevation-z0 p-3">
+  <table mat-table [dataSource]="reservationChambres">
+
+    <!-- Position Column -->
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>type</th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="dateDebut">
+      <th mat-header-cell *matHeaderCellDef> DateDebut</th>
+      <td mat-cell *matCellDef="let element"> {{element.dateDebut}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="dateFin">
+      <th mat-header-cell *matHeaderCellDef> DateFin</th>
+      <td mat-cell *matCellDef="let element">{{element.dateFin}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="disponibilite">
+      <th mat-header-cell class="align" *matHeaderCellDef> Disponibilite</th>
+      <td mat-cell class="align" *matCellDef="let element"><span (click)="showBasicDialog(element.dateDebut,element.dateFin,element)">
+        <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="check">
+      <th mat-header-cell class="align" *matHeaderCellDef> Check</th>
+      <td mat-cell class="align" *matCellDef="let element"><span (click)="showMaximizableDialog()">
+        <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+
+<!--Dispo Dialog-->
+
+<!--/////Chambre//////-->
+
+<p-dialog header="Disponibilite chambre " [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+
+<app-admin-chambre-disponible></app-admin-chambre-disponible>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+    <!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
+  </ng-template>
+</p-dialog>
+
+
+<!--Chech Dialogue-->
+
+
+<!--/////Chambre//////-->
+
+
+<p-dialog header="Ckeck" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="1000"
+          [draggable]="false" [resizable]="false">
+
+  <h3>All Chambre</h3>
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

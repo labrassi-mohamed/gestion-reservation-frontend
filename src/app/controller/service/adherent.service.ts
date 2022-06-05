@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Login} from "../model/login.model";
 import {Adherent} from "../model/adherent.model";
 import {HttpClient} from "@angular/common/http";
 
@@ -8,25 +7,34 @@ import {HttpClient} from "@angular/common/http";
 })
 export class AdherentService {
 
-  private  url='http://localhost:8090/api/v1/adherent';
+  private  url='http://localhost:8036/api/v1/adherent/user';
 
-  private _login: Login;
-
-  private adherent: Adherent;
+  private _adherent: Adherent;
 
   constructor(private http: HttpClient) {
   }
 
-  findByEmail(email){
-    return this.http.get<Adherent>(`${this.url}/find/${email}`)
+  findByUsername(username: string){
+    return this.http.get<Adherent>(`${this.url}/username/${username}`).subscribe(
+      data => {
+        this._adherent = data
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
+
+// getters
+  get adherent() : Adherent {
+    if (this._adherent == null) {
+      return this._adherent = new Adherent();
+    }
+    return this._adherent;
   }
 
 
-// getters
-  get login(): Login {
-    if (this._login == null) {
-      return this._login = new Login();
-    }
-    return this._login;
+  set adherent(value: Adherent) {
+    this._adherent = value;
   }
 }

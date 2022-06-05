@@ -4,9 +4,8 @@
   font-family: Macondo;
 color:#fff;
   img{
-    width: 125px;
-    height: 64px;
-    padding-bottom: 6px;
+    width: 165px;
+    height: 65px;
   }
 }
  i{
@@ -18,7 +17,7 @@ color:#fff;
   border-color: #b4b4b4;
 }
 .mat-list-item{
-  color: #b4b4b4 !important;
+  color: #7a7979 !important;
   font-size:0.85rem ;
   height: 44px !important;
   margin-bottom: 4px;
@@ -28,13 +27,9 @@ color:#fff;
       //margin: 0 8px;
       &:hover{
         background: rgba(194, 194, 194, 0.45) !important;
-        color: #ff6615;
+        color: #a13e0a;
 
-        .fa-caret-left{
-          padding-left: 101px;
-          color: #c5b6a9;
 
-        }
       }
 
       }
@@ -60,7 +55,57 @@ color:#fff;
   letter-spacing: 1px;
 }
 
-.fa-caret-left{
-  padding-left: 106px;
 
+.mat-list-base{
+  padding-top: 1px !important;
 }
+.fa-angle-right{
+  padding-right: 10px !important;
+}
+
+
+
+//
+//@import url(https://unpkg.com/@webpixels/css@1.1.5/dist/index.css);
+//@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+//
+//
+//nav{
+//  position: fixed;
+//  top: 0;
+//  bottom: 0;
+//  left: 0;
+//}
+//.active{
+//  background-color: #c3e9ee;
+//}
+//
+//
+//
+//
+//.example-tree-invisible {
+//  display: none;
+//}
+//
+//.example-tree ul,
+//.example-tree li {
+//  margin-top: 0;
+//  margin-bottom: 0;
+//  list-style-type: none;
+//}
+//
+///*
+// * This padding sets alignment of the nested nodes.
+// */
+//.example-tree .mat-nested-tree-node div[role=group] {
+//  padding-left: 40px;
+//}
+//
+///*
+// * Padding for leaf nodes.
+// * Leaf nodes need to have padding so as to align with other non-leaf nodes
+// * under the same parent.
+// */
+//.example-tree div[role=group] > .mat-tree-node {
+//  padding-left: 40px;
+//}

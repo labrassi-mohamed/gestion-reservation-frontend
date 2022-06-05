@@ -39,11 +39,6 @@ export class AdminLogementBungalowComponent implements OnInit {
     this.adminService.deleteBungalow(reference);
 
   }
-  displayBasic: boolean;
 
-
-  showBasicDialog() {
-    this.displayBasic = true;
-  }
 
 }

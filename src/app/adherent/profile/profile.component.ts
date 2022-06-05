@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Adherent} from "../../controller/model/adherent.model";
 import {AdherentService} from "../../controller/service/adherent.service";
+import {AuthService} from "../../controller/auth/auth.service";
+import {TokenService} from "../../controller/service/token.service";
+import {PrimeNGConfig} from "primeng/api";
 
 @Component({
   selector: 'app-profile',
@@ -9,19 +12,33 @@ import {AdherentService} from "../../controller/service/adherent.service";
 })
 export class ProfileComponent implements OnInit {
 
-  public adherentObject : Adherent = null;
-
-  constructor(private adherent: AdherentService) { }
+  constructor(private adherentService: AdherentService,
+              private auth: AuthService,
+              private tokenService: TokenService,
+              private primengConfig: PrimeNGConfig
+  ) {
+  }
 
   ngOnInit(): void {
+    this.adherentByUsername();
+    this.primengConfig.ripple = true;
   }
 
-  findByEmail(email){
-    this.adherent.findByEmail(email).subscribe(
-      data =>{
-        this.adherentObject = data
-      }
-    )
+  lougOut() {
+    this.auth.logout();
   }
 
+
+  adherentByUsername() {
+    this.auth.registerConnectedAdherent(this.adherent)
+    const tokenDecoded = this.tokenService.decode();
+    const username = tokenDecoded.sub;
+    // console.log(username)
+    this.adherentService.findByUsername(username);
+  }
+
+//  getters
+  get adherent(): Adherent {
+    return this.adherentService.adherent;
+  }
 }

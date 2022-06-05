@@ -1,9 +1,4 @@
-<div class="new-chambre">
-  <label class="add" style="padding-right: 10px">add new Chambre :</label>
-  <button type="button" class="btn btn-outline-success" (click)="showBasicDialog() " style="padding: 0.3rem 0.65rem;
-    font-size: 0.8rem;" ><i class="fa-solid fa-plus"></i></button>
-</div>
-<div>
+
 
 <div class="mat-elevation-z0 p-3">
   <table mat-table [dataSource]="chambres" >
@@ -13,7 +8,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="numero">
       <th mat-header-cell *matHeaderCellDef> NO. </th>
-      <td mat-cell *matCellDef="let element"> {{element.numberChambre}}  </td>
+      <td mat-cell *matCellDef="let element"> {{element.numero}}  </td>
     </ng-container>
 
     <!-- Name Column -->
@@ -54,17 +49,6 @@
                  aria-label="Select page of periodic elements">
   </mat-paginator>
 </div>
-</div>
 
 
 
-<!-- Copyright 2022 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at https://angular.io/license -->
-<p-dialog header="New Chambre " [(visible)]="displayBasic" [style]="{width: '40vw'}" [baseZIndex]="10000">
-  <app-admin-creat-new-chambre></app-admin-creat-new-chambre>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
-    <!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
-  </ng-template>
-</p-dialog>

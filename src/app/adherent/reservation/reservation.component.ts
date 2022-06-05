@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ReservationService} from "../../controller/service/reservation.service";
 import {Reservation} from "../../controller/model/reservation.model";
 import {NgForm} from "@angular/forms";
+import {AdherentService} from "../../controller/service/adherent.service";
+import {TokenService} from "../../controller/service/token.service";
 
 @Component({
   selector: 'app-reservation',
@@ -10,28 +12,36 @@ import {NgForm} from "@angular/forms";
 })
 export class ReservationComponent implements OnInit {
 
-  constructor(private service: ReservationService ) {}
+
+  constructor(private _service: ReservationService,
+              private adherentService: AdherentService,
+              private token: TokenService) {
+  }
 
   ngOnInit(): void {
   }
 
-  onRegister(reservationForm: NgForm){
-
+  onRegister(reservationForm: NgForm) {
+    console.log(reservationForm.value)
   }
 
-  demandeReservation(){
-    this.service.demandeReservation().subscribe(
-      data =>{
-          console.log(data)
+  demandeReservation() {
+    console.log(this.adherentService.adherent)
+    this._service.demandeReservation().subscribe(
+      data => {
+        console.log(data)
       }, error => {
-        console.log('error')
+        console.log(error.message)
       }
     )
   }
 
-//  Getters
+  //  Getters
   get reservation(): Reservation {
-    return this.service.reservation;
+    return this._service.reservation;
   }
 
+  set reservation(value: Reservation) {
+    this._service.reservation = value;
+  }
 }

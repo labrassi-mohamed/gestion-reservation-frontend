@@ -1,32 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RegistrationService} from "../../controller/service/registration.service";
 import {Registration} from "../../controller/model/registration.model";
 import {NgForm} from "@angular/forms";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
+  providers: [MessageService]
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private service: RegistrationService) { }
+  constructor(private service: RegistrationService,
+              private messageService: MessageService) {
+  }
 
   ngOnInit(): void {
   }
 
-  onRegister(registerForm: NgForm){
+  onRegister(registerForm: NgForm) {
     console.log(registerForm.value)
   }
 
-  register(){
+  register() {
     this.service.persist().subscribe(
-      data =>{
-        console.log(data)
-      }, error =>{
+      data => {
+        if (data == -1) {
+          this.messageService.add({severity:'error', summary:'Adhérent existe déjà', detail:'(essayez de vous connecter)'});
+        } else if (data == -2) {
+          this.messageService.add({severity:'warn', summary:'Email non valide', detail:'Ex: exemple@uca.ma ou @uca.ac.ma'});
+        } else if (data == -3) {
+          this.messageService.add({severity:'error', summary:'Email n’existe pas'});
+        } else if (data == -4) {
+          this.messageService.add({severity:'error', summary:'Adhérent existe déjà ', detail:'(essayez de vous connecter)'});
+        } else if (data == -5) {
+          this.messageService.add({severity:'error', summary:'Adhérent existe déjà ', detail:'(essayez de vous connecter)'});
+        } else if (data == 1) {
+          this.messageService.add({severity:'success', summary:'Vérifiez vos boîte email'});
+          this.resetResgistration();
+        }
+      }, error => {
         console.log(error.message)
       }
     );
+  }
+
+  // reset input value
+  resetResgistration(){
+    this.service.resetResgistration();
   }
 
   // Getters

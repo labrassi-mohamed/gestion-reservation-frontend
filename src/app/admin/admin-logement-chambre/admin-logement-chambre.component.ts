@@ -38,12 +38,7 @@ export class AdminLogementChambreComponent implements OnInit {
 
   }
 
-  displayBasic: boolean;
 
-
-  showBasicDialog() {
-    this.displayBasic = true;
-  }
 }
 
 
