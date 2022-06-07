@@ -1,5 +1,5 @@
 export class Chambre{
-  public numberChambre:number;
+  public numero:number;
   public reference:string;
   public espace:number;
   public capacity:number;

@@ -16,5 +16,4 @@ export class Reservation {
   public adherent: Adherent;
   public dateDebutHelp: string;
   public dateFinHelp: string;
-
 }

@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+.align{
+  text-align: center;
+}
+
+.list-att{
+  font-family: Roboto;
+  font-size: 35px;
+  text-underline: #152442;
+  margin-bottom: 15px;
+}
+

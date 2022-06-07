@@ -28,12 +28,11 @@ export class ProfileComponent implements OnInit {
     this.auth.logout();
   }
 
-
   adherentByUsername() {
     this.auth.registerConnectedAdherent(this.adherent)
     const tokenDecoded = this.tokenService.decode();
     const username = tokenDecoded.sub;
-    // console.log(username)
+    console.log(username)
     this.adherentService.findByUsername(username);
   }
 

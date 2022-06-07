@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AuthService} from "../../controller/auth/auth.service";
+import {TokenService} from "../../controller/service/token.service";
 
 @Component({
   selector: 'app-admin-header',
@@ -6,13 +8,22 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./admin-header.component.scss']
 })
 export class AdminHeaderComponent implements OnInit {
-@Output() togglesidebarForMe: EventEmitter<any>=new EventEmitter();
-  constructor() { }
+  @Output() togglesidebarForMe: EventEmitter<any> = new EventEmitter();
+
+  authUsername: string = this.token.getUsername();
+
+  constructor(private auth: AuthService,
+              private token: TokenService) {
+  }
 
   ngOnInit(): void {
   }
 
-  togglesidebar(){
+  lougOut() {
+    this.auth.logout();
+  }
+
+  togglesidebar() {
     this.togglesidebarForMe.emit();
   }
 

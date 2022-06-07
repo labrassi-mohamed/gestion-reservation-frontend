@@ -4,13 +4,15 @@ import {HttpClient} from "@angular/common/http";
 import {Adherent} from "../model/adherent.model";
 import {Bungalow} from "../model/bungalow.model";
 import {Chambre} from "../model/chambre.model";
-import {ReservationBungalow} from "../model/reservation-bungalow.model";
 import {ReservationChambre} from "../model/reservation-chambre.model";
+import {ReservationBungalow} from "../model/reservation-bungalow.model";
+import {Logement} from "../model/logement.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+
 
   private _reservation: Reservation;
   private  _reservations: Array<Reservation>;
@@ -24,7 +26,9 @@ export class AdminService {
   private _bungalows: Array<Bungalow>;
   private _adherents: Array<Adherent>;
   private _adherent: Adherent;
-  private urladmin = 'http://localhost:8080/api/v1/admin';
+  private _logement:Logement;
+  private urladmin = 'http://localhost:8036/api/v1/admin';
+
   constructor(private http: HttpClient) {}
 
   findByreservationenattente() {
@@ -142,6 +146,15 @@ export class AdminService {
   }
 
   findAllAdherent() {
+    this.http.get<Array<Adherent>>(this.urladmin + '/adherent/').subscribe(
+      data => {
+        this._adherents = data;
+        console.log('good adhernet');
+        console.log(data);
+      }
+      , error => {
+        console.log('error');
+      })
 
   }
 
@@ -149,7 +162,7 @@ export class AdminService {
 
   }
 
-  ShowReservationByAtherent() {
+  ShowReservationByAdherent() {
 
   }
 
@@ -275,8 +288,61 @@ export class AdminService {
       })
   }
 
+  AddNewChambre(chambre:Chambre) {
+    this.http.post<number>(this.urladmin  + '/chambre/save/',  this._chambre).subscribe(
+      data => {
+        console.log('chambre addeed');
+        console.log(data);
+      }
+      , error => {
+        console.log('error add new chambre');
+      })
 
-  // Getters & Setters
+  }
+
+  AddNewBungalow(bungalow: Bungalow) {
+    this.http.post<number>(this.urladmin  + '/bungalow/save/',  this._bungalow).subscribe(
+      data => {
+        console.log('bungalow addeed');
+        console.log(data);
+      }
+      , error => {
+        console.log('error add new bungalow');
+      })
+  }
+  findAdherentReservations(adherent:Adherent) {
+
+  }
+
+  findByReservationBungalowConfirme() {
+
+    this.http.get<Array<ReservationBungalow>>(this.urladmin  + '/reservationBungalow/findByConfirmationAndReject/true/false').subscribe(
+      data => {
+        this.reservationBungalows = data;
+        console.log('good reservation confirmer');
+        console.log(this._reservations);
+      }
+      , error => {
+        console.log('error');
+      })
+  }
+
+  findByReservationChambreConfirme() {
+    this.http.get<Array<ReservationChambre>>(this.urladmin  + '/reservationChambre/findByConfirmationAndReject/true/false').subscribe(
+      data => {
+        this.reservationChambres = data;
+        console.log('good Reservation chambre confirme');
+        console.log(this._reservationChambres);
+      }
+      , error => {
+        console.log('error');
+      })
+  }
+
+  // Getters & Setters//
+
+
+
   get adherent(): Adherent {
     if (this._adherent == null) {
       this._adherent = new Adherent();
@@ -412,5 +478,19 @@ export class AdminService {
   set reservationBungalows(value: Array<ReservationBungalow>) {
     this._reservationBungalows = value;
   }
+
+
+  get logement(): Logement {
+    if (this._logement == null) {
+      this._logement= new Logement();
+    }
+    return this._logement;
+  }
+
+  set logement(value: Logement) {
+    this._logement = value;
+  }
+
+
 
 }

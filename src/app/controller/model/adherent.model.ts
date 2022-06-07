@@ -10,4 +10,9 @@ export class Adherent {
   public password?: string;
   public reservation: Reservation;
   public authorities: any [];
+
+  constructor() {
+  }
+
+
 }

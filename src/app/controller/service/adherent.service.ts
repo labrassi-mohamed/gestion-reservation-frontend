@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Adherent} from "../model/adherent.model";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,10 @@ export class AdherentService {
   constructor(private http: HttpClient) {
   }
 
-  findByUsername(username: string){
+  findByUsername(username: string): any{
     return this.http.get<Adherent>(`${this.url}/username/${username}`).subscribe(
       data => {
-        this._adherent = data
+        this.adherent = data
         console.log(data);
       }, error => {
         console.log(error);

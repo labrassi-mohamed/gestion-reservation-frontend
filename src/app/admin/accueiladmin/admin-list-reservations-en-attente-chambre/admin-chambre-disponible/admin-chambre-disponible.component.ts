@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {AdminService} from "../../../../controller/service/admin.service";
 import {Chambre} from "../../../../controller/model/chambre.model";
 import {Reservation} from "../../../../controller/model/reservation.model";
@@ -14,7 +14,6 @@ export class AdminChambreDisponibleComponent implements OnInit {
 
   constructor(private adminService: AdminService) {
   }
-
   get chambres(): Array<Chambre> {
 
     return this.adminService.chambres;
@@ -30,23 +29,26 @@ export class AdminChambreDisponibleComponent implements OnInit {
   }
 
   get reservationChambres(): Array<ReservationChambre> {
+
     return this.adminService.reservationChambres;
   }
 
+
   get reservation(): Reservation {
+
     return this.adminService.reservation;
   }
 
 
-  displayedColumns: string[] = ['numero', 'espace', 'capacity', 'description', 'prix', 'confirmer'];
+  displayedColumns: string[] = ['numero','espace', 'capacity','description', 'prix','confirmer'];
   date10: any;
 
   ngOnInit(): void {
-    this.adminService.findchambresDisponible(this.reservation.dateDebutHelp, this.reservation.dateFinHelp);
+    this.adminService.findchambresDisponible(this.reservation.dateDebutHelp,this.reservation.dateFinHelp);
   }
 
   confirmerReservationChambre(numero: number) {
-    this.adminService.confirmerReservationChambre(this.reservationChambre.code, numero);
+    this.adminService.confirmerReservationChambre(this.reservationChambre.code,numero);
 
   }
 }

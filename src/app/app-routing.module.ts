@@ -4,17 +4,17 @@ import {HomeComponent} from './adherent/home/home.component';
 import {LoginComponent} from './adherent/login/login.component';
 import {ReservationComponent} from './adherent/reservation/reservation.component';
 import {SigninComponent} from './adherent/signin/signin.component';
-import {LoginadminComponent} from "./admin/loginadmin/loginadmin.component";
-import {AccueiladminComponent} from "./admin/accueiladmin/accueiladmin.component";
-import {AdminComponent} from "./admin/admin.component";
-import {AdminReservationsComponent} from "./admin/admin-reservations/admin-reservations.component";
 import {ChambreComponent} from "./adherent/logements/chambre/chambre.component";
 import {BongaloComponent} from "./adherent/logements/bongalo/bongalo.component";
 import {RegistrationComponent} from "./adherent/registration/registration.component";
 import {ProfileComponent} from "./adherent/profile/profile.component";
-import {AdminLogementComponent} from "./admin/admin-logement/admin-logement.component";
 import {AdminAdherentsComponent} from "./admin/admin-adherents/admin-adherents.component";
 import {AuthGuard} from "./controller/auth/auth.guard";
+import {AdminComponent} from "./admin/admin.component";
+import {LoginadminComponent} from "./admin/loginadmin/loginadmin.component";
+import {AdminReservationsComponent} from "./admin/admin-reservations/admin-reservations.component";
+import {AdminLogementComponent} from "./admin/admin-logement/admin-logement.component";
+import {AccueiladminComponent} from "./admin/accueiladmin/accueiladmin.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent,},
@@ -32,14 +32,24 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuard]
   },
+
+  {path: "loginadmin", component: LoginadminComponent},
+
   {path: "admin",
     component: AdminComponent,
     children: [
-      {path: "accueil", component: AccueiladminComponent},
-      {path: "loginadmin", component: LoginadminComponent},
-      {path: "reservations", component: AdminReservationsComponent},
-      {path: "logement", component: AdminLogementComponent},
-      {path: "adherents", component: AdminAdherentsComponent},
+      {path: "accueil",
+        component: AccueiladminComponent,
+        canActivate: [AuthGuard] },
+      {path: "reservations",
+        component: AdminReservationsComponent,
+        canActivate: [AuthGuard]},
+      {path: "logement",
+        component: AdminLogementComponent,
+        canActivate: [AuthGuard]},
+      {path: "adherents",
+        component: AdminAdherentsComponent,
+        canActivate: [AuthGuard]},
     ]
   },
 ];
