@@ -14,7 +14,6 @@ export class AdminLogementChambreComponent implements OnInit {
   constructor(private adminService: AdminService) {
   }
   get chambres(): Array<Chambre> {
-
     return this.adminService.chambres;
   }
 

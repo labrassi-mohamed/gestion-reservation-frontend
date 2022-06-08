@@ -33,7 +33,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-  {path: "loginadmin", component: LoginadminComponent},
+  {path: "uca-admin", component: LoginadminComponent},
 
   {path: "admin",
     component: AdminComponent,

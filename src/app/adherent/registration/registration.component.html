@@ -40,6 +40,13 @@
                        required ngModel name="email" #email="ngModel"
                        [(ngModel)]="registration.email"/>
               </div>
+
+<!--              <div class="form-outline mt-4 mb-1">-->
+<!--                <label class="form-label h5" for="email">Telephone</label>-->
+<!--                <input type="email" id="Telephone" class="form-control form-control-lg" placeholder="06********"-->
+<!--                       required ngModel name="email" #email="ngModel"-->
+<!--                       [(ngModel)]="registration.email"/>-->
+<!--              </div>-->
               <div class="alert alert-danger"
                    *ngIf="email.invalid && email.touched">
                 Ce champ est obligatoire

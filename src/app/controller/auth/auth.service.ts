@@ -20,7 +20,6 @@ export class AuthService {
   public loggedInfo$ = this._loggedIn.asObservable();
   private connectedChercheur = 'connectedChercheur';
 
-
   constructor(private http: HttpClient,
               private tokenService: TokenService,
               private router: Router) {

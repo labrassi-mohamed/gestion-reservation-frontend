@@ -33,9 +33,9 @@ export class LoginadminComponent implements OnInit {
     this.authService.loginAdmin(username, passowrd);
     if (this.authService.error != null){
       this.messageService.add({severity:'success', summary:'Vérifiez vos boîte email'});
-      console.log("not")
+      console.log("ta9 amarch")
     }else {
-      console.log("good")
+      console.log("wa raah makhdamch had login")
     }
   }
 

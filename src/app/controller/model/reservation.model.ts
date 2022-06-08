@@ -13,7 +13,7 @@ export class Reservation {
   public confirmation: boolean;
   public reject: boolean;
   public confirmationP: boolean;
-  public adherent: Adherent;
+  public user: Adherent;
   public dateDebutHelp: string;
   public dateFinHelp: string;
 }

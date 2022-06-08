@@ -5,7 +5,6 @@ import {NgForm} from "@angular/forms";
 import {AdherentService} from "../../controller/service/adherent.service";
 import {TokenService} from "../../controller/service/token.service";
 import {Adherent} from "../../controller/model/adherent.model";
-import {Observable, Subscription} from "rxjs";
 import {ReservationChambre} from "../../controller/model/reservation-chambre.model";
 import {ReservationBungalow} from "../../controller/model/reservation-bungalow.model";
 
@@ -16,23 +15,21 @@ import {ReservationBungalow} from "../../controller/model/reservation-bungalow.m
 })
 export class ReservationComponent implements OnInit {
 
-
   constructor(private service: ReservationService,
               private adherentService: AdherentService,
               private token: TokenService) {
   }
 
   ngOnInit(): void {
-    // this.loadUserByTokenUsername();
-    // this.setReservationAdherent();
-    this.getReservations();
-
+    this.reservationBungalow.user = this.loadUserByTokenUsername();
+    this.reservationChambre.user = this.loadUserByTokenUsername();
+    console.log(this.reservationChambre.user)
+    console.log(this.reservationBungalow.user)
   }
 
   onRegister(reservationForm: NgForm) {
     console.log(reservationForm.value)
   }
-
 
   getReservations() {
     const tokenDecoded = this.token.decode();
@@ -40,10 +37,13 @@ export class ReservationComponent implements OnInit {
     this.service.getReservations(username);
   }
 
-  async demandeReservation() {
-    // await this.setReservationAdherent();
+  private setReservationAdherent() {
+    this.reservation.user = this.loadUserByTokenUsername();
+  }
+
+  demandeReservation() {
     if (this.reservation.type === "chambre") {
-      this.cloneReservationChambre(this.reservation)
+      this.cloneReservationChambre(this.reservation);
       this.service.demandeReservationChambre();
     } else if (this.reservation.type === "bungalow") {
       this.cloneReservationBungalow(this.reservation)
@@ -51,29 +51,28 @@ export class ReservationComponent implements OnInit {
     }
   }
 
-  cloneReservationChambre(reservation: Reservation) {
+  async cloneReservationChambre(reservation: Reservation) {
+    this.reservationChambre.user = await this.loadUserByTokenUsername();
     this.reservationChambre.beneficiaire = reservation.beneficiaire;
     this.reservationChambre.dateDebut = reservation.dateDebut;
     this.reservationChambre.dateFin = reservation.dateFin;
     this.reservationChambre.type = reservation.type;
   }
 
-  cloneReservationBungalow(reservation: Reservation) {
+  async cloneReservationBungalow(reservation: Reservation) {
+    await this.loadUserByTokenUsername();
+    this.reservationBungalow.user = this.loadUserByTokenUsername();
     this.reservationBungalow.beneficiaire = reservation.beneficiaire;
     this.reservationBungalow.dateDebut = reservation.dateDebut;
     this.reservationBungalow.dateFin = reservation.dateFin;
     this.reservationBungalow.type = reservation.type;
   }
 
-  // private setReservationAdherent() {
-  //   this.reservation.adherent = this.loadUserByTokenUsername();
-  // }
 
-  // private loadUserByTokenUsername(): Adherent {
-  //   const tokenDecoded = this.token.decode();
-  //   const username = tokenDecoded.sub;
-  //   return this.adherentService.findByUsername(username);
-  // }
+  private loadUserByTokenUsername(): Adherent {
+    const username = this.token.getUsername();
+    return this.adherentService.find(username);
+  }
 
   //  Getters
   get reservation(): Reservation {
@@ -99,5 +98,6 @@ export class ReservationComponent implements OnInit {
   set reservationBungalow(value: ReservationBungalow) {
     this.service.reservationBungalow = value;
   }
+
 
 }

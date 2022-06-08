@@ -59,7 +59,7 @@ export class AdminService {
   findallchambres() {
     this.http.get<Array<Chambre>>(this.urladmin + '/chambre/').subscribe(
       data => {
-        this._chambres = data;
+        this._chambres= data;
         console.log('good');
         console.log(data);
       }

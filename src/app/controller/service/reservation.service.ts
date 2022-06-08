@@ -14,7 +14,7 @@ import {ReservationBungalow} from "../model/reservation-bungalow.model";
   providedIn: 'root'
 })
 export class ReservationService {
-  private urlPath = "http://localhost:8036//api/v1/adherent/";
+  private urlPath = "http://localhost:8036/api/v1/adherent";
 
   private _reservation: Reservation;
   private _reservationChambre: ReservationChambre;
@@ -51,8 +51,8 @@ export class ReservationService {
     );
   }
 
-  public getReservations(email: string){
-    return this.http.get<Array<Reservation>>(`${this.urlPath}/{email}`).subscribe(
+  public getReservations(email: string) {
+    return this.http.get<Array<Reservation>>(`${this.urlPath}/reservation-chambre/email/${email}`).subscribe(
       data => {
         console.log(this._reservations = data)
       }, error => {
@@ -83,7 +83,7 @@ export class ReservationService {
 
   get reservationChambre(): ReservationChambre {
     if (this._reservationChambre == null) {
-      return this._reservationChambre= new ReservationChambre();
+      return this._reservationChambre = new ReservationChambre();
     }
     return this._reservationChambre;
   }
@@ -94,7 +94,7 @@ export class ReservationService {
 
   get reservationBungalow(): ReservationBungalow {
     if (this._reservationBungalow == null) {
-      return this._reservationBungalow= new ReservationBungalow();
+      return this._reservationBungalow = new ReservationBungalow();
     }
     return this._reservationBungalow;
   }
