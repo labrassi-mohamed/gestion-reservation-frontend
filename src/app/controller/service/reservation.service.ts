@@ -21,6 +21,7 @@ export class ReservationService {
   private _reservationBungalow: ReservationBungalow;
   private _reservations: Reservation[];
   private _adherent: Adherent;
+  public error: boolean | false;
 
   constructor(private http: HttpClient,
               private adherentService: AdherentService,
@@ -30,10 +31,11 @@ export class ReservationService {
   public demandeReservationChambre() {
     return this.http.post<number>(`${this.urlPath}/reservation-chambre/demandeReservation/`, this.reservationChambre).subscribe(
       data => {
-        console.log(data)
-        console.log("good")
+        if (data < 0){
+          this.error = true;
+        }else this.error = false;
       }, error => {
-        alert(error)
+        this.error = true;
         console.log(error)
       }
     );
@@ -42,10 +44,11 @@ export class ReservationService {
   public demandeReservationBungalow() {
     return this.http.post<number>(`${this.urlPath}/reservation-bungalow/demandeReservation/`, this.reservationBungalow).subscribe(
       data => {
-        console.log(data)
-        console.log("good")
+        if (data < 0){
+          this.error = true;
+        }else this.error = false;
       }, error => {
-        alert(error)
+        this.error = true;
         console.log(error)
       }
     );

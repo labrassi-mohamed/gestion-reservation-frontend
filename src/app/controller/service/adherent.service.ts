@@ -22,7 +22,7 @@ export class AdherentService {
     return this.http.get<Adherent>(`${this.url}/username/${username}`).subscribe(
       data => {
         this.adherent = data
-        console.log(data);
+        // console.log(this.adherent);
       }, error => {
         console.log(error);
       }
@@ -33,7 +33,7 @@ export class AdherentService {
     this.http.get<Adherent>(`${this.url}/username/${username}`).subscribe(
       data => {
         this._currentUser2 = data
-        console.log(this._currentUser2);
+        // console.log(this._currentUser2);
       }, error => {
         console.log(error);
       }

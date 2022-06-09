@@ -7,6 +7,8 @@ import {TokenService} from "../../controller/service/token.service";
 import {Adherent} from "../../controller/model/adherent.model";
 import {ReservationChambre} from "../../controller/model/reservation-chambre.model";
 import {ReservationBungalow} from "../../controller/model/reservation-bungalow.model";
+import Swal from 'sweetalert2'
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-reservation',
@@ -17,19 +19,66 @@ export class ReservationComponent implements OnInit {
 
   constructor(private service: ReservationService,
               private adherentService: AdherentService,
-              private token: TokenService) {
+              private token: TokenService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.reservationBungalow.user = this.loadUserByTokenUsername();
     this.reservationChambre.user = this.loadUserByTokenUsername();
-    console.log(this.reservationChambre.user)
-    console.log(this.reservationBungalow.user)
+    // console.log(this.reservationChambre.user)
+    // console.log(this.reservationBungalow.user)
   }
 
   onRegister(reservationForm: NgForm) {
-    console.log(reservationForm.value)
+    // console.log(reservationForm.value)
   }
+
+// Demande de reservation
+  demandeReservation() {
+    if (this.reservation.type === "chambre") {
+      this.cloneReservationChambre(this.reservation);
+      this.service.demandeReservationChambre();
+      if (this.service.error == false) {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Votre réservation bien enregistrée',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.router.navigate(['/profile']);
+      } else if (this.service.error == true) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Problème veuillez réessayer !!'
+        })
+      }
+    } else if (this.reservation.type === "bungalow") {
+      this.cloneReservationBungalow(this.reservation)
+      this.service.demandeReservationBungalow();
+      if (this.service.error == false) {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Votre réservation bien enregistrée',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.router.navigate(['/profile']);
+      } else if (this.service.error == true) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Problème veuillez réessayer !!'
+        })
+      }
+    }
+  }
+
+  // Fin demande de reservation
+
 
   getReservations() {
     const tokenDecoded = this.token.decode();
@@ -39,16 +88,6 @@ export class ReservationComponent implements OnInit {
 
   private setReservationAdherent() {
     this.reservation.user = this.loadUserByTokenUsername();
-  }
-
-  demandeReservation() {
-    if (this.reservation.type === "chambre") {
-      this.cloneReservationChambre(this.reservation);
-      this.service.demandeReservationChambre();
-    } else if (this.reservation.type === "bungalow") {
-      this.cloneReservationBungalow(this.reservation)
-      this.service.demandeReservationBungalow()
-    }
   }
 
   async cloneReservationChambre(reservation: Reservation) {
