@@ -13,6 +13,7 @@ export class AuthService {
 
   readonly API = loginUrl;
   public _user = new Adherent();
+  public role :string;
   public error: string =null;
   private _authenticatedUser = new Adherent();
   private _authenticated = <boolean>JSON.parse(localStorage.getItem('autenticated')) || false;
@@ -65,6 +66,7 @@ export class AuthService {
     this._authenticatedUser.firstname = firstname;
     this._authenticatedUser.email = email;
     this._authenticatedUser.authorities = roles;
+    this.role = roles;
     localStorage.setItem('autenticated', JSON.stringify(true));
     this.authenticated = true;
     this._loggedIn.next(true);

@@ -24,10 +24,6 @@ export class ReservationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reservationBungalow.user = this.loadUserByTokenUsername();
-    this.reservationChambre.user = this.loadUserByTokenUsername();
-    // console.log(this.reservationChambre.user)
-    // console.log(this.reservationBungalow.user)
   }
 
   onRegister(reservationForm: NgForm) {
@@ -48,7 +44,7 @@ export class ReservationComponent implements OnInit {
           timer: 1500
         });
         this.router.navigate(['/profile']);
-      } else if (this.service.error == true) {
+      } else if (this.service.error === true) {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -76,30 +72,26 @@ export class ReservationComponent implements OnInit {
       }
     }
   }
-
   // Fin demande de reservation
 
-
-  getReservations() {
+  getReservationChambres() {
     const tokenDecoded = this.token.decode();
     const username = tokenDecoded.sub;
-    this.service.getReservations(username);
+    this.service.getReservationChambres(username);
   }
 
-  private setReservationAdherent() {
-    this.reservation.user = this.loadUserByTokenUsername();
-  }
-
-  async cloneReservationChambre(reservation: Reservation) {
-    this.reservationChambre.user = await this.loadUserByTokenUsername();
+  // private methods
+  private cloneReservationChambre(reservation: Reservation) {
+    this.loadUserByTokenUsername();
+    this.reservationChambre.user = this.loadUserByTokenUsername();
     this.reservationChambre.beneficiaire = reservation.beneficiaire;
     this.reservationChambre.dateDebut = reservation.dateDebut;
     this.reservationChambre.dateFin = reservation.dateFin;
     this.reservationChambre.type = reservation.type;
   }
 
-  async cloneReservationBungalow(reservation: Reservation) {
-    await this.loadUserByTokenUsername();
+  private cloneReservationBungalow(reservation: Reservation) {
+    this.loadUserByTokenUsername();
     this.reservationBungalow.user = this.loadUserByTokenUsername();
     this.reservationBungalow.beneficiaire = reservation.beneficiaire;
     this.reservationBungalow.dateDebut = reservation.dateDebut;
@@ -110,10 +102,14 @@ export class ReservationComponent implements OnInit {
 
   private loadUserByTokenUsername(): Adherent {
     const username = this.token.getUsername();
-    return this.adherentService.find(username);
+    // return this.adherentService.find(username);
+    let adherent = new Adherent();
+    adherent.username = username;
+    return adherent;
+
   }
 
-  //  Getters
+  //  Getters && Setters
   get reservation(): Reservation {
     return this.service.reservation;
   }
@@ -137,6 +133,4 @@ export class ReservationComponent implements OnInit {
   set reservationBungalow(value: ReservationBungalow) {
     this.service.reservationBungalow = value;
   }
-
-
 }

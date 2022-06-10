@@ -14,6 +14,7 @@ export class Adherent {
   public reservationBungalows: Array<ReservationBungalow>;
   public authorities: any [];
 
+
   constructor() {
   }
 

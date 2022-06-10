@@ -14,13 +14,15 @@ import {ReservationBungalow} from "../model/reservation-bungalow.model";
   providedIn: 'root'
 })
 export class ReservationService {
+
   private urlPath = "http://localhost:8036/api/v1/adherent";
 
   private _reservation: Reservation;
   private _reservationChambre: ReservationChambre;
   private _reservationBungalow: ReservationBungalow;
-  private _reservations: Reservation[];
-  private _adherent: Adherent;
+  private _reservationChambres: Array<ReservationChambre>;
+  private _reservationBungalows: Array<ReservationBungalow>;
+  private _reservations: Array<Reservation>;
   public error: boolean | false;
 
   constructor(private http: HttpClient,
@@ -28,12 +30,13 @@ export class ReservationService {
               private token: TokenService) {
   }
 
+// Demande de reservation chambre
   public demandeReservationChambre() {
     return this.http.post<number>(`${this.urlPath}/reservation-chambre/demandeReservation/`, this.reservationChambre).subscribe(
       data => {
-        if (data < 0){
+        if (data < 0) {
           this.error = true;
-        }else this.error = false;
+        } else this.error = false;
       }, error => {
         this.error = true;
         console.log(error)
@@ -41,12 +44,13 @@ export class ReservationService {
     );
   }
 
+// Demande de reservation bungalow
   public demandeReservationBungalow() {
     return this.http.post<number>(`${this.urlPath}/reservation-bungalow/demandeReservation/`, this.reservationBungalow).subscribe(
       data => {
-        if (data < 0){
+        if (data < 0) {
           this.error = true;
-        }else this.error = false;
+        } else this.error = false;
       }, error => {
         this.error = true;
         console.log(error)
@@ -54,17 +58,45 @@ export class ReservationService {
     );
   }
 
-  public getReservations(email: string) {
-    return this.http.get<Array<Reservation>>(`${this.urlPath}/reservation-chambre/email/${email}`).subscribe(
+  // get Reservations chambre d'un adherent by email
+  public getReservationChambres(email: string): Array<ReservationChambre> {
+    this.http.get<Array<ReservationChambre>>(`${this.urlPath}/reservation-chambre/email/${email}`).subscribe(
       data => {
-        console.log(this._reservations = data)
+        this.reservationChambres = data
+        // console.log(this._reservationChambres)
       }, error => {
         console.log(error)
       }
     );
+    return this.reservationChambres;
   }
 
-// Getters
+  public allReservationChambresAdherent() {
+    const tokenDecoded = this.token.decode();
+    const username = tokenDecoded.sub;
+    this.getReservationChambres(username);
+  }
+
+  // get Reservations bungalow d'un adherent by email
+  private getReservationBungalows(email: string): Array<ReservationBungalow> {
+    this.http.get<Array<ReservationBungalow>>(`${this.urlPath}/reservation-bungalow/email/${email}`).subscribe(
+      data => {
+        this.reservationBungalows = data
+        // console.log(this._reservationBungalows)
+      }, error => {
+        console.log(error)
+      }
+    );
+    return this.reservationBungalows;
+  }
+
+  public allReservationBungalowAdherent() {
+    const tokenDecoded = this.token.decode();
+    const username = tokenDecoded.sub;
+    this.getReservationBungalows(username);
+  }
+
+// Getters && Setters
   get reservation(): Reservation {
     if (this._reservation == null) {
       return this._reservation = new Reservation();
@@ -76,8 +108,37 @@ export class ReservationService {
     this._reservation = value;
   }
 
-  get reservations(): Reservation[] {
+  get reservationChambres(): Array<ReservationChambre> {
+    if (this._reservationChambres == null) {
+      return this._reservationChambres = new Array<ReservationChambre>();
+    }
+    return this._reservationChambres;
+  }
+
+  set reservationChambres(value: Array<ReservationChambre>) {
+    this._reservationChambres = value;
+  }
+
+  get reservationBungalows(): Array<ReservationBungalow> {
+    if (this._reservationBungalows == null) {
+      return this._reservationBungalows = new Array<ReservationBungalow>();
+    }
+    return this._reservationBungalows;
+  }
+
+  set reservationBungalows(value: Array<ReservationBungalow>) {
+    this._reservationBungalows = value;
+  }
+
+  get reservations(): Array<Reservation> {
+    if (this._reservations == null) {
+      return this._reservations = new Array<Reservation>();
+    }
     return this._reservations;
+  }
+
+  set reservations(value: Array<Reservation>) {
+    this._reservations = value;
   }
 
   get adherent(): Adherent {
