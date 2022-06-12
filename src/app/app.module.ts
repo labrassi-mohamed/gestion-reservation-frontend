@@ -20,7 +20,6 @@ import {ClientComponent} from './adherent/client.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
-import {MatIconModule} from "@angular/material/icon";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatListModule} from "@angular/material/list";
 import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
@@ -80,6 +79,16 @@ import {
 } from "./admin/admin-logement/admin-creat-new-logement/admin-creat-new-logement.component";
 import {AdminLogementBungalowComponent} from "./admin/admin-logement-bungalow/admin-logement-bungalow.component";
 import {AdminRecentUsersComponent} from "./admin/admin-recent-users/admin-recent-users.component";
+import { BackComponent } from './adherent/profile/back/back.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from '@angular/material/icon';
+import { ProfilComponent } from './adherent/profile/profil/profil.component';
+import { ReservationsComponent } from './adherent/profile/reservations/reservations.component';
+import {MatSortModule} from "@angular/material/sort";
+import {AcceuillComponent} from "./adherent/home/acceuill/acceuill.component";
+import {ContactComponent} from "./adherent/home/contact/contact.component";
+import {QuiSommesNousComponent} from "./adherent/home/qui-sommes-nous/qui-sommes-nous.component";
+
 
 
 
@@ -120,8 +129,13 @@ import {AdminRecentUsersComponent} from "./admin/admin-recent-users/admin-recent
     AdminListReservationsChambreConfirmeComponent,
     AdminCreatNewLogementComponent,
     AdminLogementBungalowComponent,
-    AdminRecentUsersComponent
-
+    AdminRecentUsersComponent,
+    BackComponent,
+    ProfilComponent,
+    ReservationsComponent,
+    AcceuillComponent,
+    ContactComponent,
+    QuiSommesNousComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -153,6 +167,9 @@ import {AdminRecentUsersComponent} from "./admin/admin-recent-users/admin-recent
     MessageModule,
     RippleModule,
     ButtonModule,
+    MatButtonModule,
+    MatSortModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

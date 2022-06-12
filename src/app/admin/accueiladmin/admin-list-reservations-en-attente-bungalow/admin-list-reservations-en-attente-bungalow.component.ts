@@ -36,14 +36,8 @@ export class AdminListReservationsEnAttenteBungalowComponent implements OnInit {
   }
 
   get reservationBungalows(): Array<ReservationBungalow> {
-
     return this.adminService.reservationBungalows;
   }
-
-
-
-
-
 
   showBasicDialog(dateDebut:string,dateFin:string,res:ReservationBungalow) {
 

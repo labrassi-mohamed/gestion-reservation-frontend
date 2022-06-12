@@ -35,7 +35,7 @@ export class AuthService {
         this.loadInfos();
         // console.log(this.tokenService.getUsername());
         console.log('you are logged in successfully');
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/profile/user']);
       }, (error: HttpErrorResponse) => {
         this.error = error.message;
         console.log("error");

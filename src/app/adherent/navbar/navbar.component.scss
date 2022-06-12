@@ -1,0 +1,324 @@
+/*.height{*/
+/*  height: 120px !important;*/
+/*}*/
+
+/*.marginLeft{*/
+/*  margin-left: 10px;*/
+/*}*/
+/*.logo{*/
+/*height: 60px;*/
+/*  width:187px;*/
+/*}*/
+/*.navbar{*/
+/*  background-color: #ffffff;*/
+/*}*/
+/*.container{*/
+/*  margin: 0px 30px;*/
+/*}*/
+/*.nav-link{*/
+/*  color:#2d5f9e !important;*/
+/*}*/
+/*.all{*/
+/*  border-bottom-color: #2d5f9e !important;*/
+/*  border-bottom: 10px;*/
+/*}*/
+
+/*.fa-pen{*/
+/*  color:#ffffff;*/
+/*  margin-left: 9px;*/
+/*}*/
+/*button{*/
+/*  border-radius: 5px;*/
+/*  border: none;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  background: #9c5e37;*/
+/*  margin-left: 8px;*/
+
+/*}*/
+/*.button-contact{*/
+/*  color:#ffffff;*/
+/*  padding: 8px;*/
+/*  margin-left: 3px;*/
+/*  text-decoration: none;*/
+/*}*/
+
+
+/**{*/
+/*  box-sizing: border-box;*/
+/*}*/
+
+/*nav{*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: space-between;*/
+/*  padding-top: 1px;*/
+/*  padding-bottom:1px;*/
+/*  padding-left: 2%;*/
+/*  padding-right: 2%;*/
+/*  background-color: rgb(255, 255, 255);*/
+/*  border-bottom: 2px solid #a8572f;*/
+
+
+/*}*/
+/*nav ul li{*/
+
+/*  list-style-type: none;*/
+/*  display: inline-block;*/
+/*  padding-top: 14px;*/
+/*  padding-right: 20px;*/
+/*}*/
+/*nav ul li a{*/
+/*  text-decoration: none;*/
+/*  color: #2d5f9e;*/
+/*  font-weight: bold;*/
+/*  text-transform: capitalize;*/
+/*  font-family: 'IBM Plex Sans Arabic', sans-serif;*/
+
+/*}*/
+
+/*nav ul li .btn-a{*/
+/*  text-decoration: none;*/
+/*  color: #2d5f9e;*/
+/*  font-weight: bold;*/
+/*  text-transform: capitalize;*/
+/*  font-family: 'IBM Plex Sans Arabic', sans-serif;*/
+/*  border:none;*/
+/*  background:none;*/
+
+/*}*/
+
+/*nav ul li a:hover{*/
+/*  color:#2d5f9e;*/
+/*  transition: .4s;*/
+/*}*/
+/*img{*/
+/*  height: 70px;*/
+
+/*}*/
+/*nav .nav-left{*/
+/*  padding:0px !important;*/
+/*}*/
+
+/*img{*/
+/*  padding-left: 100px;*/
+/*}*/
+/*.hero{*/
+
+/*}*/
+
+
+
+
+
+
+
+
+div#sp-header {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  top: 0;
+  background: white;
+}
+#top-content {
+  background-color: #fff;
+  border-bottom: 2px solid #2d5f9e;
+}
+div#top-content {
+  display:flex;
+  align-items:center;
+  border-bottom: 2px solid #2d5f9e;
+}
+
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+.lg-logo-container {
+  float: left;
+  margin: 1px 0px;
+}
+div#sp-menu {
+  float: right;
+}
+.lg-logo-container .logo {
+  display: table;
+  height:83px;
+}
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a {
+  background-color: transparent;
+}
+a {
+  color: #1c6798;
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  vertical-align: middle;
+}
+img {
+  border: 0;
+}
+.nav {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+ul {
+  list-style-type: none;
+}
+
+div#sp-menu .nav > li.parent {
+  position: relative;
+}
+div#sp-menu .nav > li {
+  float: left;
+  margin-left: 40px;
+}
+.nav>li {
+  position: relative;
+  display: block;
+}
+div#sp-menu .nav > li > a, div#sp-menu .nav > li > span {
+  position: relative;
+  display: block;
+  padding: 31px 0px;
+  color: #666;
+  background-color: inherit;
+  font-size: 15px;
+}
+
+.nav>li>a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}
+a {
+  color: #337ab7;
+  text-decoration: none;
+}
+a {
+  background-color: transparent;
+}
+div#sp-menu .nav > li.parent {
+  position: relative;
+}
+div#sp-menu .nav > li {
+  float: left;
+  margin-left: 40px;
+}
+.nav>li {
+  position: relative;
+  display: block;
+}
+
+
+
+div#sp-menu .nav > li.active > a, div#sp-menu .nav > li.active > span, div#sp-menu .nav > li:hover > a {
+  color: #2d5f9e;
+}
+
+
+div#sp-menu .nav > li {
+  float: left;
+  margin-left: 40px;
+}
+.nav>li {
+  position: relative;
+  display: block;
+}
+
+
+div#sp-menu .nav > li > a, div#sp-menu .nav > li > span {
+  position: relative;
+  display: block;
+  padding: 31px 0px;
+  color: #666;
+  background-color: inherit;
+  font-size: 15px;
+}
+div#sp-menu .nav > li {
+  float: left;
+  margin-left: 40px;
+}
+
+.nav>li {
+  position: relative;
+  display: block;
+}
+div#sp-menu .nav > li a.contact-link {
+  background-color: #2d5f9e;
+  color: #fff;
+  padding: 8px 16px 8px 40px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin-top: 20px;
+  position: relative;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  -moz-transition: .2s;
+  transition: .2s;
+  border: 1px solid transparent;
+
+}
+div#sp-menu .nav > li a.contact-link:hover,div#sp-menu .nav > li a.contact-link:focus{
+  color: #2d5f9e;
+  background-color: white;
+  border: 1px solid #2d5f9e;
+}
+
+
+div#sp-menu .nav > li > a, div#sp-menu .nav > li > span {
+  position: relative;
+  display: block;
+  padding: 31px 0px;
+  color: #666;
+  background-color: inherit;
+  font-size: 15px;
+}
+div#sp-menu .nav > li a.contact-link:before {
+  /* content: url(../../../images/icons/ico-pen-white.png); */
+  position: absolute;
+  left: 10%;
+  top: 10px;
+  content: "\f040";
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.lg-logo-container .logo img{
+  margin: auto;
+  display: flex;
+  height: 83px;
+}
+

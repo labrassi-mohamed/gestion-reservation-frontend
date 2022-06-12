@@ -24,6 +24,7 @@ export class ReservationService {
   private _reservationBungalows: Array<ReservationBungalow>;
   private _reservations: Array<Reservation>;
   public error: boolean | false;
+  private _count= 0;
 
   constructor(private http: HttpClient,
               private adherentService: AdherentService,
@@ -63,7 +64,7 @@ export class ReservationService {
     this.http.get<Array<ReservationChambre>>(`${this.urlPath}/reservation-chambre/email/${email}`).subscribe(
       data => {
         this.reservationChambres = data
-        // console.log(this._reservationChambres)
+      this._count = this._count+ this.reservationChambres.length;
       }, error => {
         console.log(error)
       }
@@ -82,7 +83,7 @@ export class ReservationService {
     this.http.get<Array<ReservationBungalow>>(`${this.urlPath}/reservation-bungalow/email/${email}`).subscribe(
       data => {
         this.reservationBungalows = data
-        // console.log(this._reservationBungalows)
+        this._count = 3;
       }, error => {
         console.log(error)
       }
@@ -165,5 +166,9 @@ export class ReservationService {
 
   set reservationBungalow(value: ReservationBungalow) {
     this._reservationBungalow = value;
+  }
+
+  get count(): number {
+    return this._count;
   }
 }

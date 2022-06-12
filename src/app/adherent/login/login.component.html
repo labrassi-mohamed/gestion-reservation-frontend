@@ -1,61 +1,105 @@
-<app-navbar></app-navbar>
-<section class="vh-120" style="background-color: #BF9578;">
-  <div class="container py-5 h-90">
-    <div class="row d-flex justify-content-center align-items-center h-90 mt-5">
-      <div class="col col-xl-7">
-        <div class="card rounded-3" style="border-radius: .3rem;">
-          <img src="../../../assets/images/jemaa.jpg"
-               class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
-               alt="Sample photo">
-          <div class="row g-0 -flex justify-content-center align-items-center">
-            <div class="col-md-10 col-lg-11 d-flex align-items-center">
-              <div class="card-body p-4 pt-lg-4 p-lg-5 text-black">
-                <form [formGroup]="loginForm">
-                  <h5 class="fw-normal mb-3 pb-3 pe-1" style="letter-spacing: 1px;">
-                    * Connectez-vous pour commencer votre session
-                  </h5>
-                  <p-message></p-message>
-                  <div class="form-outline mb-4">
-                    <label class="form-label" for="email">Adresse Email</label>
-                    <input type="email" id="email" placeholder="Exemple@gmail.com"
-                           class="form-control form-control-lg"
-                           formControlName="username"
-                           required name="email"
-                           />
-                  </div>
-                  <div class="form-outline mb-1">
-                    <label class="form-label" for="password">Mot de passe</label>
-                    <input type="password" id="password" placeholder="****************"
-                           class="form-control form-control-lg"
-                           formControlName="password"
-                           required name="password"
-                           />
-                  </div>
+<!--<app-navbar></app-navbar>-->
+<!--<section class="vh-120" style="background-color: #BF9578;">-->
+<!--  <div class="container py-5 h-90">-->
+<!--    <div class="row d-flex justify-content-center align-items-center h-90 mt-5">-->
+<!--      <div class="col col-xl-7">-->
+<!--        <div class="card rounded-3" style="border-radius: .3rem;">-->
+<!--          <img src="../../../assets/images/jemaa.jpg"-->
+<!--               class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"-->
+<!--               alt="Sample photo">-->
+<!--          <div class="row g-0 -flex justify-content-center align-items-center">-->
+<!--            <div class="col-md-10 col-lg-11 d-flex align-items-center">-->
+<!--              <div class="card-body p-4 pt-lg-4 p-lg-5 text-black">-->
+<!--                <form [formGroup]="loginForm">-->
+<!--                  <h5 class="fw-normal mb-3 pb-3 pe-1" style="letter-spacing: 1px;">-->
+<!--                    * Connectez-vous pour commencer votre session-->
+<!--                  </h5>-->
+<!--                  <p-message></p-message>-->
+<!--                  <div class="form-outline mb-4">-->
+<!--                    <label class="form-label" for="email">Adresse Email</label>-->
+<!--                    <input type="email" id="email" placeholder="Exemple@gmail.com"-->
+<!--                           class="form-control form-control-lg"-->
+<!--                           formControlName="username"-->
+<!--                           required name="email"-->
+<!--                           />-->
+<!--                  </div>-->
+<!--                  <div class="form-outline mb-1">-->
+<!--                    <label class="form-label" for="password">Mot de passe</label>-->
+<!--                    <input type="password" id="password" placeholder="****************"-->
+<!--                           class="form-control form-control-lg"-->
+<!--                           formControlName="password"-->
+<!--                           required name="password"-->
+<!--                           />-->
+<!--                  </div>-->
 
-                  <a class="small text-muted pb-3">Mot de passe oublié ?</a>
+<!--                  <a class="small text-muted pb-3">Mot de passe oublié ?</a>-->
 
-                  <div class="pt-1 mb-4">
-                    <button class="btn btn-dark btn-lg btn-block" type="submit"
-                           (click)="submit()" >Se connecter
-                    </button>
-                  </div>
+<!--                  <div class="pt-1 mb-4">-->
+<!--                    <button class="btn btn-dark btn-lg btn-block" type="submit"-->
+<!--                           (click)="submit()" >Se connecter-->
+<!--                    </button>-->
+<!--                  </div>-->
 
-                  <p class="mb-3 pb-lg-2" style="color: #393f81;">Je n'ai pas de compte ?
-                    <a routerLink="/registration" class="inscrire">Inscrivez-vous ici</a>
-                  </p>
+<!--                  <p class="mb-3 pb-lg-2" style="color: #393f81;">Je n'ai pas de compte ?-->
+<!--                    <a routerLink="/registration" class="inscrire">Inscrivez-vous ici</a>-->
+<!--                  </p>-->
 
-                  <p class="mb-5 pb-lg-2" style="color: #393f81; font-size: 16px;">
-                    Vous avez un problème d'inscription ou de connexion sur l'espace adérent?
-                    <br> Contactez-nous au
-                    <a routerLink="" style="color: blue;">contact@clubreservation.com</a>
-                  </p>
-                </form>
+<!--                  <p class="mb-5 pb-lg-2" style="color: #393f81; font-size: 16px;">-->
+<!--                    Vous avez un problème d'inscription ou de connexion sur l'espace adérent?-->
+<!--                    <br> Contactez-nous au-->
+<!--                    <a routerLink="" style="color: blue;">contact@clubreservation.com</a>-->
+<!--                  </p>-->
+<!--                </form>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    {{login | json}}&ndash;&gt;-->
+<!--  </div>-->
+<!--</section>-->
+
+
+<section class="ftco-section" style="background-color: gray;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5">
+        <h2 class="heading-section">Login #10</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="login-wrap p-0">
+          <h3 class="mb-4 text-center">Have an account?</h3>
+          <form [formGroup]="loginForm" class="signin-form">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username" required
+              formControlName="username">
+            </div>
+            <div class="form-group">
+              <input id="password-field" type="password" class="form-control" placeholder="Password" required
+                     formControlName="password">
+              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            </div>
+            <div class="form-group">
+              <button type="submit" (click)="submit()" class="form-control btn btn-primary submit px-3">Sign In</button>
+            </div>
+            <div class="form-group d-md-flex">
+              <div class="w-50">
+                <label class="checkbox-wrap checkbox-primary">Remember Me
+                  <input type="checkbox" checked>
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="w-50 text-md-right">
+                <a href="#" style="color: #fff">Forgot Password</a>
               </div>
             </div>
-          </div>
+          </form>
+          <p class="w-100 text-center">&mdash; Or Sign up With &mdash;</p>
         </div>
       </div>
     </div>
-    <!--    {{login | json}}-->
   </div>
 </section>

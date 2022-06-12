@@ -29,7 +29,6 @@ export class ProfileComponent implements OnInit {
     this.adherentByUsername();
     this.serviceResrvation.allReservationChambresAdherent();
     this.serviceResrvation.allReservationBungalowAdherent();
-    console.log(this.reservationChambres)
     this.primengConfig.ripple = true;
   }
 

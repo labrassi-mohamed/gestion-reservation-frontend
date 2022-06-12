@@ -15,7 +15,7 @@ export class AdminService {
 
 
   private _reservation: Reservation;
-  private  _reservations: Array<Reservation>;
+  private _reservations: Array<Reservation>;
   private _reservationChambre: ReservationChambre;
   private _reservationChambres: Array<ReservationChambre>;
   private _reservationBungalow: ReservationBungalow;
@@ -26,13 +26,14 @@ export class AdminService {
   private _bungalows: Array<Bungalow>;
   private _adherents: Array<Adherent>;
   private _adherent: Adherent;
-  private _logement:Logement;
+  private _logement: Logement;
   private urladmin = 'http://localhost:8036/api/v1/admin';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   findByreservationenattente() {
-    this.http.get<Array<Reservation>>(this.urladmin  + '/reservation/findAllByConfirmation/false').subscribe(
+    this.http.get<Array<Reservation>>(this.urladmin + '/reservation/findAllByConfirmation/false').subscribe(
       data => {
         this.reservations = data;
         console.log('good');
@@ -59,7 +60,7 @@ export class AdminService {
   findallchambres() {
     this.http.get<Array<Chambre>>(this.urladmin + '/chambre/').subscribe(
       data => {
-        this._chambres= data;
+        this._chambres = data;
         console.log('good');
         console.log(data);
       }
@@ -162,61 +163,12 @@ export class AdminService {
 
   }
 
-  ShowReservationByAdherent() {
 
-  }
+  findchambresDisponible(dateDebut: string, dateFin: string) {
 
-  saveChambre() {
-    this.http.post<number>(this.urladmin + '/chambre/save', this._chambre).subscribe(
+    this.http.get<Array<Chambre>>(this.urladmin + '/chambre/ChambreDisponible/' + dateDebut + '/' + dateFin).subscribe(
       data => {
-        if (data > 0) {
-          console.log(data);
-          console.log(this._chambre);
-          console.log('Chambre saved');
-          this.findallchambres();
-        } else {
-          console.log('Erreur lors de la creation du code : ' + data);
-        }
-      }
-      , error => {
-        console.log('error');
-      })
-  }
-
-
-  saveBungalow() {
-    this.http.post<number>(this.urladmin + '/bungalow/save', this._bungalow).subscribe(
-      data => {
-        if (data > 0) {
-          console.log(data);
-          console.log('Bungalow saved');
-          this.findallbungalows();
-        } else {
-          console.log('Erreur lors de la creation du code : ' + data);
-        }
-      }
-      , error => {
-        console.log('error');
-      })
-  }
-
-  findByreservationancienne() {
-    this.http.get<Array<Reservation>>(this.urladmin + '/reservation/reservationAncienne').subscribe(
-      data => {
-        this.reservations = data;
-        console.log(this.reservations);
-      }
-      , error => {
-        console.log('error');
-      })
-  }
-
-
-  findchambresDisponible(dateDebut:string,dateFin:string) {
-
-    this.http.get<Array<Chambre>>(this.urladmin + '/chambre/ChambreDisponible/'+dateDebut+'/'+dateFin ).subscribe(
-      data => {
-        this.chambres=data;
+        this.chambres = data;
         console.log(this.chambres);
         console.log('gooood chambre dispo');
       }
@@ -228,9 +180,9 @@ export class AdminService {
 
   findBungalowDisponible(dateDebut: string, dateFin: string) {
 
-    this.http.get<Array<Bungalow>>(this.urladmin + '/bungalow/BungalowDisponible/'+dateDebut+'/'+dateFin ).subscribe(
+    this.http.get<Array<Bungalow>>(this.urladmin + '/bungalow/BungalowDisponible/' + dateDebut + '/' + dateFin).subscribe(
       data => {
-        this.bungalows=data;
+        this.bungalows = data;
         console.log(this.bungalows);
         console.log('gooood bungalow dispo');
       }
@@ -241,7 +193,7 @@ export class AdminService {
   }
 
   findByReservationChambreEnAttente() {
-    this.http.get<Array<ReservationChambre>>(this.urladmin  + '/reservationChambre/findByConfirmationAndReject/false/false').subscribe(
+    this.http.get<Array<ReservationChambre>>(this.urladmin + '/reservationChambre/findByConfirmationAndReject/false/false').subscribe(
       data => {
         this.reservationChambres = data;
         console.log('good');
@@ -251,8 +203,9 @@ export class AdminService {
         console.log('error');
       })
   }
+
   findByReservationBungalowEnAttente() {
-    this.http.get<Array<ReservationBungalow>>(this.urladmin  + '/reservationBungalow/findByConfirmationAndReject/false/false').subscribe(
+    this.http.get<Array<ReservationBungalow>>(this.urladmin + '/reservationBungalow/findByConfirmationAndReject/false/false').subscribe(
       data => {
         this.reservationBungalows = data;
         console.log('good');
@@ -264,7 +217,7 @@ export class AdminService {
   }
 
   confirmerReservationBungalow(code: string, numero: number) {
-    this.http.put<number>(this.urladmin  + '/reservationBungalow/confirmerReservationBungalow/'+code+'/'+numero,  {}).subscribe(
+    this.http.put<number>(this.urladmin + '/reservationBungalow/confirmerReservationBungalow/' + code + '/' + numero, {}).subscribe(
       data => {
         console.log('good confirmation reservation bungalow');
         console.log(data);
@@ -277,10 +230,11 @@ export class AdminService {
   }
 
   confirmerReservationChambre(code: string, numero: number) {
-    this.http.put<number>(this.urladmin  + '/reservationChambre/confirmerReservationChambre/'+code+'/'+numero,  {}).subscribe(
+    this.http.put<number>(this.urladmin + '/reservationChambre/confirmerReservationChambre/' + code + '/' + numero, {}).subscribe(
       data => {
         console.log('good confirmation reservation chambre');
         console.log(data);
+        this.findchambresDisponible(this.reservationChambre.dateDebutHelp, this.reservationChambre.dateFinHelp);
         this.findByReservationChambreEnAttente();
       }
       , error => {
@@ -288,11 +242,12 @@ export class AdminService {
       })
   }
 
-  AddNewChambre(chambre:Chambre) {
-    this.http.post<number>(this.urladmin  + '/chambre/save/',  this._chambre).subscribe(
+  AddNewChambre(chambre: Chambre) {
+    this.http.post<number>(this.urladmin + '/chambre/save/', this._chambre).subscribe(
       data => {
         console.log('chambre addeed');
         console.log(data);
+        this.findByReservationChambreEnAttente();
       }
       , error => {
         console.log('error add new chambre');
@@ -301,7 +256,7 @@ export class AdminService {
   }
 
   AddNewBungalow(bungalow: Bungalow) {
-    this.http.post<number>(this.urladmin  + '/bungalow/save/',  this._bungalow).subscribe(
+    this.http.post<number>(this.urladmin + '/bungalow/save/', this._bungalow).subscribe(
       data => {
         console.log('bungalow addeed');
         console.log(data);
@@ -310,13 +265,14 @@ export class AdminService {
         console.log('error add new bungalow');
       })
   }
-  findAdherentReservations(adherent:Adherent) {
+
+  findAdherentReservations(adherent: Adherent) {
 
   }
 
   findByReservationBungalowConfirme() {
 
-    this.http.get<Array<ReservationBungalow>>(this.urladmin  + '/reservationBungalow/findByConfirmationAndReject/true/false').subscribe(
+    this.http.get<Array<ReservationBungalow>>(this.urladmin + '/reservationBungalow/findByConfirmationAndReject/true/false').subscribe(
       data => {
         this.reservationBungalows = data;
         console.log('good reservation confirmer');
@@ -328,7 +284,7 @@ export class AdminService {
   }
 
   findByReservationChambreConfirme() {
-    this.http.get<Array<ReservationChambre>>(this.urladmin  + '/reservationChambre/findByConfirmationAndReject/true/false').subscribe(
+    this.http.get<Array<ReservationChambre>>(this.urladmin + '/reservationChambre/findByConfirmationAndReject/true/false').subscribe(
       data => {
         this.reservationChambres = data;
         console.log('good Reservation chambre confirme');
@@ -340,7 +296,6 @@ export class AdminService {
   }
 
   // Getters & Setters//
-
 
 
   get adherent(): Adherent {
@@ -482,7 +437,7 @@ export class AdminService {
 
   get logement(): Logement {
     if (this._logement == null) {
-      this._logement= new Logement();
+      this._logement = new Logement();
     }
     return this._logement;
   }
@@ -490,7 +445,6 @@ export class AdminService {
   set logement(value: Logement) {
     this._logement = value;
   }
-
 
 
 }
