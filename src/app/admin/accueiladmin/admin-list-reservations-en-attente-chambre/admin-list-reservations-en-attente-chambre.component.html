@@ -8,9 +8,9 @@
       <td mat-cell *matCellDef="let element"> {{element.code}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef>type</th>
-      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef>Username</th>
+      <td mat-cell *matCellDef="let element"> {{element.user.username}} </td>
     </ng-container>
 
     <!-- Weight Column -->
@@ -31,10 +31,10 @@
         <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
     </ng-container>
 
-    <ng-container matColumnDef="check">
-      <th mat-header-cell class="align" *matHeaderCellDef> Check</th>
-      <td mat-cell class="align" *matCellDef="let element"><span (click)="showMaximizableDialog()">
-        <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
+    <ng-container matColumnDef="reject">
+      <th mat-header-cell class="align" *matHeaderCellDef> Reject</th>
+      <td mat-cell class="align" *matCellDef="let element"><span (click)="reject(element.code)">
+        <button class="btn-white btn"><i class="fa-solid fa-calendar-xmark"></i></button></span></td>
     </ng-container>
 
 

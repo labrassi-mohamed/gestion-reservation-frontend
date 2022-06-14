@@ -5,6 +5,10 @@ table {
 .align{
   text-align: center;
 }
+.fa-calendar-xmark{
+  color:#ff1414;
+
+}
 
 .fa-xmark{
   color: #ff1414;

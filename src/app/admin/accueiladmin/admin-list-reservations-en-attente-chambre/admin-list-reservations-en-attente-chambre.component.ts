@@ -57,7 +57,7 @@ export class AdminListReservationsEnAttenteChambreComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['code','type', 'dateDebut', 'dateFin','disponibilite','check'];
+  displayedColumns: string[] = ['code','username', 'dateDebut', 'dateFin','disponibilite','reject'];
   dataSource = new MatTableDataSource<ReservationChambre>(this.reservationChambres);
   // dataSource = this.reservations;
   // dataSource = this.adminService.reservations;
@@ -95,5 +95,9 @@ export class AdminListReservationsEnAttenteChambreComponent implements OnInit {
 
   chambrevar(chambre: Chambre) {
     return chambre;
+  }
+
+  reject(code: string) {
+this.adminService.rejectReservationChambre(code);
   }
 }

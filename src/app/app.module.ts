@@ -15,7 +15,6 @@ import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CalendarModule} from "primeng/calendar";
-import {SigninComponent} from "./adherent/signin/signin.component";
 import {ClientComponent} from './adherent/client.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -88,8 +87,9 @@ import {MatSortModule} from "@angular/material/sort";
 import {AcceuillComponent} from "./adherent/home/acceuill/acceuill.component";
 import {ContactComponent} from "./adherent/home/contact/contact.component";
 import {QuiSommesNousComponent} from "./adherent/home/qui-sommes-nous/qui-sommes-nous.component";
-
-
+import {CommonModule} from "@angular/common";
+import {ToastModule} from 'primeng/toast';
+import {ConfirmPopupModule} from "primeng/confirmpopup";
 
 
 @NgModule({
@@ -101,7 +101,6 @@ import {QuiSommesNousComponent} from "./adherent/home/qui-sommes-nous/qui-sommes
     FooterComponent,
     LoginComponent,
     ReservationComponent,
-    SigninComponent,
     ClientComponent,
     LogementsComponent,
     ChambreComponent,
@@ -169,6 +168,9 @@ import {QuiSommesNousComponent} from "./adherent/home/qui-sommes-nous/qui-sommes
     ButtonModule,
     MatButtonModule,
     MatSortModule,
+    CommonModule,
+    ToastModule,
+    ConfirmPopupModule,
 
   ],
   providers: [

@@ -15,7 +15,7 @@ export class AdminListReservationsEnAttenteBungalowComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['code','type', 'dateDebut', 'dateFin','disponibilite','check'];
+  displayedColumns: string[] = ['code','username', 'dateDebut', 'dateFin','disponibilite','reject'];
   dataSource = new MatTableDataSource<ReservationBungalow>(this.reservationBungalows);
 
   displayBasic: boolean;
@@ -67,8 +67,8 @@ export class AdminListReservationsEnAttenteBungalowComponent implements OnInit {
   }
 
 
+  reject(code: string ) {
 
-
-
-
+    this.adminService.rejectReservationBungalow(code);
+  }
 }

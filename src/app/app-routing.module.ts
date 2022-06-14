@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './adherent/home/home.component';
 import {LoginComponent} from './adherent/login/login.component';
 import {ReservationComponent} from './adherent/reservation/reservation.component';
-import {SigninComponent} from './adherent/signin/signin.component';
 import {ChambreComponent} from "./adherent/logements/chambre/chambre.component";
 import {BongaloComponent} from "./adherent/logements/bongalo/bongalo.component";
 import {RegistrationComponent} from "./adherent/registration/registration.component";
@@ -23,7 +22,6 @@ import {QuiSommesNousComponent} from "./adherent/home/qui-sommes-nous/qui-sommes
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
-  {path: "signin", component: SigninComponent},
   {path: "chambre", component: ChambreComponent},
   {path: "bongalo", component: BongaloComponent},
   {path: "registration", component: RegistrationComponent},

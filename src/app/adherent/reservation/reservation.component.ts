@@ -43,7 +43,7 @@ export class ReservationComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/profile/reservations']);
       } else if (this.service.error === true) {
         Swal.fire({
           icon: 'error',

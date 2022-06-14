@@ -1,78 +1,129 @@
-<app-navbar></app-navbar>
-<section class="h-120 bg-image" style="background-color: gray;">
-  <div class="container py-5 h-90">
-    <div class="row d-flex justify-content-center align-items-center h-100 mt-5">
-      <div class=" col col-xl-7">
-        <div class="card rounded-3">
-          <img src="../../../assets/images/jemaa.jpg"
-               class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
-               alt="Sample photo">
-          <div class="card-body p-3 p-md-5 pt-md-3">
-            <h3 class="mb-2 pb-2 pb-md-0 mb-md-4 px-md-2 text-center">Registration Info</h3>
-            <p-messages></p-messages>
-            <form class="px-md-2" #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
-              <div class="form-outline mt-4 mb-1">
-                <label class="form-label h5" for="nom">Nom</label>
-                <input type="text" id="nom" class="form-control form-control-lg" placeholder="Votre nom"
-                       required ngModel name="nom"  #nom="ngModel"
-                       [(ngModel)]="registration.nom"/>
-              </div>
-              <div class="alert alert-danger"
-                   *ngIf="nom.touched && nom.invalid">
-                Ce champ est obligatoire
-              </div>
-
-              <div class="form-outline mt-4 mb-1">
-                <label class="form-label h5" for="prenom">Prénom</label>
-                <input type="text" id="prenom" class="form-control form-control-lg" placeholder="Votre prénom"
-                       required ngModel name="prenom" #prenom="ngModel"
-                       [(ngModel)]="registration.prenom"/>
-              </div>
-              <div class="alert alert-danger"
-                   *ngIf="prenom.touched && prenom.invalid">
-                   Ce champ est obligatoire
-              </div>
-
-
-              <div class="form-outline mt-4 mb-1">
-                <label class="form-label h5" for="email">Email</label>
-                <input type="email" id="email" class="form-control form-control-lg" placeholder="Ex: mo@example.com"
-                       required ngModel name="email" #email="ngModel"
-                       [(ngModel)]="registration.email"/>
-              </div>
+<!--<app-navbar></app-navbar>-->
+<!--<section class="h-120 bg-image" style="background-color: gray;">-->
+<!--  <div class="container py-5 h-90">-->
+<!--    <div class="row d-flex justify-content-center align-items-center h-100 mt-5">-->
+<!--      <div class=" col col-xl-7">-->
+<!--        <div class="card rounded-3">-->
+<!--          <img src="../../../assets/images/jemaa.jpg"-->
+<!--               class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"-->
+<!--               alt="Sample photo">-->
+<!--          <div class="card-body p-3 p-md-5 pt-md-3">-->
+<!--            <h3 class="mb-2 pb-2 pb-md-0 mb-md-4 px-md-2 text-center">Registration Info</h3>-->
+<!--            <p-messages></p-messages>-->
+<!--            <form class="px-md-2" #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">-->
+<!--              <div class="form-outline mt-4 mb-1">-->
+<!--                <label class="form-label h5" for="nom">Nom</label>-->
+<!--                <input type="text" id="nom" class="form-control form-control-lg" placeholder="Votre nom"-->
+<!--                       required ngModel name="nom"  #nom="ngModel"-->
+<!--                       [(ngModel)]="registration.nom"/>-->
+<!--              </div>-->
+<!--              <div class="alert alert-danger"-->
+<!--                   *ngIf="nom.touched && nom.invalid">-->
+<!--                Ce champ est obligatoire-->
+<!--              </div>-->
 
 <!--              <div class="form-outline mt-4 mb-1">-->
-<!--                <label class="form-label h5" for="email">Telephone</label>-->
-<!--                <input type="email" id="Telephone" class="form-control form-control-lg" placeholder="06********"-->
+<!--                <label class="form-label h5" for="prenom">Prénom</label>-->
+<!--                <input type="text" id="prenom" class="form-control form-control-lg" placeholder="Votre prénom"-->
+<!--                       required ngModel name="prenom" #prenom="ngModel"-->
+<!--                       [(ngModel)]="registration.prenom"/>-->
+<!--              </div>-->
+<!--              <div class="alert alert-danger"-->
+<!--                   *ngIf="prenom.touched && prenom.invalid">-->
+<!--                   Ce champ est obligatoire-->
+<!--              </div>-->
+
+
+<!--              <div class="form-outline mt-4 mb-1">-->
+<!--                <label class="form-label h5" for="email">Email</label>-->
+<!--                <input type="email" id="email" class="form-control form-control-lg" placeholder="Ex: mo@example.com"-->
 <!--                       required ngModel name="email" #email="ngModel"-->
 <!--                       [(ngModel)]="registration.email"/>-->
 <!--              </div>-->
-              <div class="alert alert-danger"
-                   *ngIf="email.invalid && email.touched">
-                Ce champ est obligatoire
-              </div>
 
-              <div class="pt-1 mb-4">
-                <button class="btn btn-success btn-lg btn-block" type="submit"
-                        (click)="register()"
-                        [disabled]="registerForm.invalid">Se connecter
-                </button>
-              </div>
+<!--&lt;!&ndash;              <div class="form-outline mt-4 mb-1">&ndash;&gt;-->
+<!--&lt;!&ndash;                <label class="form-label h5" for="email">Telephone</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="email" id="Telephone" class="form-control form-control-lg" placeholder="06********"&ndash;&gt;-->
+<!--&lt;!&ndash;                       required ngModel name="email" #email="ngModel"&ndash;&gt;-->
+<!--&lt;!&ndash;                       [(ngModel)]="registration.email"/>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--              <div class="alert alert-danger"-->
+<!--                   *ngIf="email.invalid && email.touched">-->
+<!--                Ce champ est obligatoire-->
+<!--              </div>-->
 
-              <p class="mb-3 pb-lg-2" style="color: #393f81;">J'ai un compte
-                <a routerLink="/login" class="inscrire">Connexion</a>
-              </p>
+<!--              <div class="pt-1 mb-4">-->
+<!--                <button class="btn btn-success btn-lg btn-block" type="submit"-->
+<!--                        (click)="register()"-->
+<!--                        [disabled]="registerForm.invalid">Se connecter-->
+<!--                </button>-->
+<!--              </div>-->
 
-              <p class="mb-5 pb-lg-2" style="color: #393f81; font-size: 16px;">
-                Vous avez un problème d'inscription ou de connexion sur l'espace adérent?
-                <br> Contactez-nous au
-                <a routerLink="" style="color: blue;">contact@clubreservation.com</a>
-              </p>
-            </form>
-<!--                        {{registration | json}}-->
+<!--              <p class="mb-3 pb-lg-2" style="color: #393f81;">J'ai un compte-->
+<!--                <a routerLink="/login" class="inscrire">Connexion</a>-->
+<!--              </p>-->
+
+<!--              <p class="mb-5 pb-lg-2" style="color: #393f81; font-size: 16px;">-->
+<!--                Vous avez un problème d'inscription ou de connexion sur l'espace adérent?-->
+<!--                <br> Contactez-nous au-->
+<!--                <a routerLink="" style="color: blue;">contact@clubreservation.com</a>-->
+<!--              </p>-->
+<!--            </form>-->
+<!--&lt;!&ndash;                        {{registration | json}}&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+<section class="h-100 bg-image">
+  <div class="lg-logo-container">
+    <a class="logo" href="/"><img src="../../../assets/images/logo.png" alt="" border="0"></a>
+  </div>
+    <div class="container py-3 h-100 signup-form">
+      <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+        <h2>Registre</h2>
+        <p class="hint-text">Créez votre compte. Si vous êtes membre chez nous.</p>
+        <p-toast></p-toast>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Votre prénom"
+                     required ngModel name="prenom" #nom="ngModel"
+                     [(ngModel)]="registration.prenom">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Votre nom"
+                     required ngModel name="nom" #nom="ngModel"
+                     [(ngModel)]="registration.nom">
+            </div>
           </div>
         </div>
-      </div>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Ex: mo@example.com"
+                 required ngModel name="email" #email="ngModel"
+                 [(ngModel)]="registration.email">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Votre numero de telephone"
+                 required ngModel name="telephone" #telephone="ngModel"
+                 [(ngModel)]="registration.telephone">
+        </div>
+        <!--    <div class="form-group">-->
+        <!--      <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of-->
+        <!--        Use</a> &amp; <a href="#">Privacy Policy</a></label>-->
+        <!--    </div>-->
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-lg btn-block"
+                  (click)="register()"
+                  [disabled]="registerForm.invalid"
+          >Inscrivez-vous
+          </button>
+        </div>
+        <div class="text-center">J'ai un compte? <a routerLink="login">Connexion</a></div>
+      </form>
     </div>
-  </div>
 </section>
+

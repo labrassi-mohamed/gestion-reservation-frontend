@@ -8,9 +8,9 @@
     </ng-container>
 
   <!--Type-->
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef> Type</th>
-      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Username</th>
+      <td mat-cell *matCellDef="let element"> {{element.user.username}} </td>
     </ng-container>
 
     <!-- Date Debut -->
@@ -30,10 +30,10 @@
       <td mat-cell class="align" *matCellDef="let element"><span (click)="showBasicDialog(element.dateDebut,element.dateFin,element)">
         <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
     </ng-container>
-    <ng-container matColumnDef="check">
-      <th mat-header-cell class="align" *matHeaderCellDef> Check</th>
-      <td mat-cell class="align" *matCellDef="let element"><span (click)="showMaximizableDialog()">
-        <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
+    <ng-container matColumnDef="reject">
+      <th mat-header-cell class="align" *matHeaderCellDef> Reject</th>
+      <td mat-cell class="align" *matCellDef="let element"><span (click)="reject(element.code)">
+        <button class="btn-white btn"><i class="fa-solid fa-calendar-xmark"></i></button></span></td>
     </ng-container>
 
 
@@ -70,12 +70,12 @@
 <!--/////Chambre//////-->
 
 
-<p-dialog header="Ckeck" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="1000"
-          [draggable]="false" [resizable]="false">
+<!--<p-dialog header="Ckeck" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="1000"-->
+<!--          [draggable]="false" [resizable]="false">-->
 
-  <h3>All Chambre</h3>
+<!--  <h3>All Chambre</h3>-->
 
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Ok" styleClass="p-button-text"></p-button>
-  </ng-template>
-</p-dialog>
+<!--  <ng-template pTemplate="footer">-->
+<!--    <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Ok" styleClass="p-button-text"></p-button>-->
+<!--  </ng-template>-->
+<!--</p-dialog>-->

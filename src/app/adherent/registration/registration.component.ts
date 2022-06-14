@@ -27,16 +27,22 @@ export class RegistrationComponent implements OnInit {
     this.service.persist().subscribe(
       data => {
         if (data == -1) {
+          console.log("-1")
           this.messageService.add({severity:'error', summary:'Adhérent existe déjà', detail:'(essayez de vous connecter)'});
         } else if (data == -2) {
+          console.log("-2")
           this.messageService.add({severity:'warn', summary:'Email non valide', detail:'Ex: exemple@uca.ma ou @uca.ac.ma'});
         } else if (data == -3) {
+          console.log("-3")
           this.messageService.add({severity:'error', summary:'Email n’existe pas'});
         } else if (data == -4) {
+          console.log("-4")
           this.messageService.add({severity:'error', summary:'Adhérent existe déjà ', detail:'(essayez de vous connecter)'});
         } else if (data == -5) {
+          console.log("-5")
           this.messageService.add({severity:'error', summary:'Adhérent existe déjà ', detail:'(essayez de vous connecter)'});
         } else if (data == 1) {
+          console.log("1")
           this.messageService.add({severity:'success', summary:'Vérifiez vos boîte email'});
           this.resetResgistration();
         }

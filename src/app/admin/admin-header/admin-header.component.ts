@@ -8,6 +8,7 @@ import {TokenService} from "../../controller/service/token.service";
   styleUrls: ['./admin-header.component.scss']
 })
 export class AdminHeaderComponent implements OnInit {
+
   @Output() togglesidebarForMe: EventEmitter<any> = new EventEmitter();
 
   authUsername: string = this.token.getUsername();

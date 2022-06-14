@@ -100,6 +100,35 @@ export class AdminService {
       })
   }
 
+
+  rejectReservationBungalow(code: string) {
+
+    this.http.put<number>(this.urladmin + '/reservationBungalow/rejectReservationBungalow/'+code, {}).subscribe(
+      data => {
+        console.log('reservation rejecte');
+        console.log(data);
+        this.findByReservationBungalowEnAttente();
+
+      }
+      , error => {
+console.log('error reject')
+      }
+
+      )}
+  rejectReservationChambre(code: string) {
+
+    this.http.put<number>(this.urladmin + '/reservationChambre/rejectReservationChambre/'+code, {}).subscribe(
+      data => {
+        console.log('reservation rejecte');
+        console.log(data);
+        this.findByReservationChambreEnAttente();
+
+      }
+      , error => {
+console.log('error reject')
+      }
+
+      )}
   findByreservationactuelle() {
     this.http.get<Array<Reservation>>(this.urladmin + '/reservation/reservationActuelle').subscribe(
       data => {

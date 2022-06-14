@@ -13,13 +13,14 @@ export class AuthService {
 
   readonly API = loginUrl;
   public _user = new Adherent();
-  public role :string;
-  public error: string =null;
+  public role: string;
+  public error: boolean = null;
   private _authenticatedUser = new Adherent();
   private _authenticated = <boolean>JSON.parse(localStorage.getItem('autenticated')) || false;
   public _loggedIn = new BehaviorSubject<boolean>(false);
   public loggedInfo$ = this._loggedIn.asObservable();
   private connectedChercheur = 'connectedChercheur';
+  public connected: boolean = false;
 
   constructor(private http: HttpClient,
               private tokenService: TokenService,
@@ -29,15 +30,16 @@ export class AuthService {
   public loginAdherent(username: string, password: string) {
     this.http.post<any>(this.API + 'login', {username, password}, {observe: 'response'}).subscribe(
       resp => {
-        this.error = null;
+        this.connected = true;
         const jwt = resp.headers.get('Authorization');
         jwt != null ? this.tokenService.saveToken(jwt) : false;
         this.loadInfos();
+        this.error = false;
         // console.log(this.tokenService.getUsername());
         console.log('you are logged in successfully');
         this.router.navigate(['/profile/user']);
       }, (error: HttpErrorResponse) => {
-        this.error = error.message;
+        this.error = true;
         console.log("error");
       }
     );

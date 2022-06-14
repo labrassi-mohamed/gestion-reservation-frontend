@@ -8,7 +8,7 @@
           <button mat-button [matMenuTriggerFor]="menu" class="user mt-2  d-flex align-items-center">
           <i class="fa-solid fa-user"></i>
            <div class="uu">{{authUsername}}</div>
-            <i class="user-image-icon ml-1" class="fa-solid fa-angle-down "></i>
+            <i class="user-image-icon ml-1 fa-solid fa-angle-down"></i>
           </button>
           <mat-menu #menu="matMenu">
             <button (click)="lougOut()" mat-menu-item>
@@ -17,7 +17,6 @@
             </button>
           </mat-menu>
         </li>
-
       </ul>
     </div>
   </mat-toolbar-row>

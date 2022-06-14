@@ -1,0 +1,73 @@
+<div class="row m-4">
+  <div class="">
+    <button mat-flat-button class="absolutee">modifié</button>
+  </div>
+</div>
+<div class="row d-flex justify-content-center">
+  <!-- card profil-->
+  <div class="col-4">
+    <div class="card mb-4">
+      <div class="card-body text-center">
+        <img src="https://pic.onlinewebfonts.com/svg/img_329115.png" alt="Photo de profile"
+             class="rounded-circle img-fluid" style="width: 150px;">
+        <h5 class="my-3">{{adherent.firstname}} {{adherent.lastname}}</h5>
+        <p class="text-muted mb-1">{{adherent.username}}</p>
+        <div class="d-flex justify-content-center mb-2">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End card profil-->
+
+  <!-- text-->
+  <div class="col-6">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Preom</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{adherent.firstname}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nom</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{adherent.lastname}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                          <p class="text-muted mb-0" *ngIf="adherent.username == null ; else gotousername">name zone</p>
+                          <ng-template #gotousername>{{adherent.username}}</ng-template>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Mobile</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" *ngIf="adherent.telephone == null ; else gotoTelephone">+212-6*********</p>
+                <ng-template #gotoTelephone>{{adherent.telephone}}</ng-template>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

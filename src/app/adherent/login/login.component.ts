@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private service: AdherentService,
               private authService: AuthService,
-              private messageService : MessageService
+              private messageService: MessageService
   ) {
   }
 
@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
     const username = formValues.username;
     const passowrd = formValues.password;
     this.authService.loginAdherent(username, passowrd);
-    if (this.authService.error != null){
-      this.messageService.add({severity:'success', summary:'Vérifiez vos boîte email'});
-      console.log("not")
-    }else {
-      console.log("good")
-    }
+    if (this.authService.error == false) {
+      console.log("connected")
+    } else if (this.authService.error == true) {
+      this.messageService.add({severity: 'error', summary: 'Email ou mot de passe incorect'});
+    } else
+      this.messageService.add({severity: 'error', summary: '*Champ est obligatoire'});
   }
 
 }

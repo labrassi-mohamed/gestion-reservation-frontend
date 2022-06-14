@@ -24,7 +24,7 @@ export class ReservationService {
   private _reservationBungalows: Array<ReservationBungalow>;
   private _reservations: Array<Reservation>;
   public error: boolean | false;
-  private _count= 0;
+  private _count = 0;
 
   constructor(private http: HttpClient,
               private adherentService: AdherentService,
@@ -64,7 +64,7 @@ export class ReservationService {
     this.http.get<Array<ReservationChambre>>(`${this.urlPath}/reservation-chambre/email/${email}`).subscribe(
       data => {
         this.reservationChambres = data
-      this._count = this._count+ this.reservationChambres.length;
+        this._count = this._count + this.reservationChambres.length;
       }, error => {
         console.log(error)
       }
@@ -95,6 +95,17 @@ export class ReservationService {
     const tokenDecoded = this.token.decode();
     const username = tokenDecoded.sub;
     this.getReservationBungalows(username);
+  }
+
+  public annuler(code){
+    return this.http.delete<number>(`${this.urlPath}/reservation-chambre/${code}`).subscribe(
+      data => {
+        console.log(data);
+        this.allReservationChambresAdherent();
+      }, error => {
+        console.error()
+      }
+    )
   }
 
 // Getters && Setters

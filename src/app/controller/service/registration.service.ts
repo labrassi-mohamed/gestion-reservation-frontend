@@ -18,7 +18,7 @@ export class RegistrationService {
 
   resetResgistration(){
     return this._registration= {
-      email: "", nom: "", prenom: ""
+      email: "", nom: "", prenom: "", telephone: ""
     }
   }
   // Getters
