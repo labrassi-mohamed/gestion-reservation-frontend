@@ -31,11 +31,18 @@
         <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
     </ng-container>
 
+    <ng-container matColumnDef="propose">
+      <th mat-header-cell class="align" *matHeaderCellDef> Check</th>
+      <td mat-cell class="align" *matCellDef="let element"><span (click)="showBasicDialog2(element.dateDebut,element.dateFin,element)">
+        <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
+    </ng-container>
+
     <ng-container matColumnDef="reject">
       <th mat-header-cell class="align" *matHeaderCellDef>Rejeter</th>
       <td mat-cell class="align" *matCellDef="let element"><span (click)="reject(element.code)">
         <button class="btn-white btn"><i class="fa-solid fa-calendar-xmark"></i></button></span></td>
     </ng-container>
+
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -53,11 +60,20 @@
 
 <!--/////Chambre//////-->
 
-<p-dialog header="Disponibilite chambre " [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog header="Disponibilite  " [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
 
 <app-admin-chambre-disponible></app-admin-chambre-disponible>
   <ng-template pTemplate="footer">
     <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+    <!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="Proposition " [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+
+<app-admin-chambre-propose></app-admin-chambre-propose>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic2=false" label="Ok" styleClass="p-button-text"></p-button>
     <!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
   </ng-template>
 </p-dialog>
@@ -78,3 +94,4 @@
     <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Ok" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>
+

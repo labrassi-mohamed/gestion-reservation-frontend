@@ -35,6 +35,7 @@ export class AdminListReservationsEnAttenteChambreComponent implements OnInit {
 
 
   displayBasic: boolean;
+  displayBasic2: boolean;
   displayMaximizable: boolean;
 
 
@@ -57,7 +58,7 @@ export class AdminListReservationsEnAttenteChambreComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['code','username', 'dateDebut', 'dateFin','disponibilite','reject'];
+  displayedColumns: string[] = ['code','username', 'dateDebut', 'dateFin','disponibilite','propose','reject'];
   dataSource = new MatTableDataSource<ReservationChambre>(this.reservationChambres);
   // dataSource = this.reservations;
   // dataSource = this.adminService.reservations;
@@ -76,6 +77,16 @@ export class AdminListReservationsEnAttenteChambreComponent implements OnInit {
 
   }
 
+  showBasicDialog2(dateDebut:string,dateFin:string,res:ReservationChambre) {
+
+    res.dateDebutHelp=dateDebut;
+    res.dateFinHelp=dateFin;
+    this.reservationChambre=res;
+    this.displayBasic2 = true;
+    this.adminService.findchambresPropose(this.reservationChambre.dateDebutHelp,this.reservationChambre.dateFinHelp);
+
+
+  }
 
   showMaximizableDialog() {
     this.displayMaximizable = true;

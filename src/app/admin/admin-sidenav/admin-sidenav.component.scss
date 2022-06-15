@@ -29,8 +29,13 @@ color:#fff;
         background: rgba(194, 194, 194, 0.45) !important;
         color: #a13e0a;
 
-
       }
+    &:focus{
+
+      background: rgba(194, 194, 194, 0.45) !important;
+      color: #a13e0a;
+
+    }
 
       }
     }
@@ -54,7 +59,11 @@ color:#fff;
   font-weight: 100;
   letter-spacing: 1px;
 }
-
+.mat-list-item
+.mat-list-item-content:focus{
+  background: rgba(194, 194, 194, 0.45) !important;
+  color: #a13e0a;
+}
 
 .mat-list-base{
   padding-top: 1px !important;

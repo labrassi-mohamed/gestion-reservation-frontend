@@ -7,6 +7,8 @@ import {Chambre} from "../model/chambre.model";
 import {ReservationChambre} from "../model/reservation-chambre.model";
 import {ReservationBungalow} from "../model/reservation-bungalow.model";
 import {Logement} from "../model/logement.model";
+import {ChambreLibre} from "../model/chambre-libre.model";
+import {BungalowLibre} from "../model/bungalow-libre.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,10 @@ export class AdminService {
   private _adherents: Array<Adherent>;
   private _adherent: Adherent;
   private _logement: Logement;
+  private _chambreLibre:ChambreLibre;
+  private _chambreLibres:Array<ChambreLibre>;
+ private _bungalowLibre:ChambreLibre;
+ private _bungalowLibres:Array<BungalowLibre>;
   private urladmin = 'http://localhost:8036/api/v1/admin';
 
   constructor(private http: HttpClient) {
@@ -207,6 +213,32 @@ console.log('error reject')
       })
   }
 
+  findchambresPropose(dateDebut: string, dateFin: string) {
+
+    this.http.get<Array<ChambreLibre>>(this.urladmin + '/chambre/PropositionDisponible/' + dateDebut + '/' + dateFin).subscribe(
+      data => {
+        this.chambreLibres = data;
+        console.log(this.chambreLibres);
+        console.log('gooood chambre propose');
+      }
+      , error => {
+        console.log('error');
+
+      })
+  }
+  findbungalowPropose(dateDebut: string, dateFin: string) {
+
+    this.http.get<Array<BungalowLibre>>(this.urladmin + '/bungalow/PropositionDisponible/' + dateDebut + '/' + dateFin).subscribe(
+      data => {
+        this.bungalowLibres = data;
+        console.log(this.bungalowLibres);
+        console.log('gooood bungalow propose');
+      }
+      , error => {
+        console.log('error');
+
+      })
+  }
   findBungalowDisponible(dateDebut: string, dateFin: string) {
 
     this.http.get<Array<Bungalow>>(this.urladmin + '/bungalow/BungalowDisponible/' + dateDebut + '/' + dateFin).subscribe(
@@ -475,5 +507,78 @@ console.log('error reject')
     this._logement = value;
   }
 
+
+  get chambreLibre(): ChambreLibre {
+    if(this._chambreLibre ==null){
+      this._chambreLibre= new ChambreLibre();
+    }
+    return this._chambreLibre;
+  }
+
+  set chambreLibre(value: ChambreLibre) {
+    this._chambreLibre = value;
+  }
+
+  get chambreLibres(): Array<ChambreLibre> {
+    if(this._chambreLibres ==null){
+      this._chambreLibres= new Array<ChambreLibre>();
+    }
+    return this._chambreLibres;
+  }
+
+  set chambreLibres(value: Array<ChambreLibre>) {
+    this._chambreLibres = value;
+  }
+
+
+  get bungalowLibre(): ChambreLibre {
+    if(this._bungalowLibre==null){
+      this._bungalowLibre=new ChambreLibre();
+    }
+    return this._bungalowLibre;
+  }
+
+  set bungalowLibre(value: ChambreLibre) {
+    this._bungalowLibre = value;
+  }
+
+
+  get bungalowLibres(): Array<BungalowLibre> {
+    if(this._bungalowLibres==null){
+      this._bungalowLibres=new Array<BungalowLibre>();
+    }
+    return this._bungalowLibres;
+  }
+
+  set bungalowLibres(value: Array<BungalowLibre>) {
+    this._bungalowLibres = value;
+  }
+
+  proposeReservationChambre(numero:number) {
+    this.http.put<number>(this.urladmin + '/reservationChambre/proposeReservation/'+numero+'/' , this._reservationChambre).subscribe(
+      data => {
+        console.log('good proposition reservation chambre');
+        console.log(data);
+        this.findchambresPropose(this.reservationChambre.dateDebutHelp, this.reservationChambre.dateFinHelp);
+        this.findByReservationChambreEnAttente();
+      }
+      , error => {
+        console.log('error proposition');
+      })
+
+  }
+  proposeReservationBungalow(numero:number) {
+    this.http.put<number>(this.urladmin + '/reservationBungalow/proposeReservation/'+numero+'/' , this._reservationBungalow).subscribe(
+      data => {
+        console.log('good proposition reservation bungalow');
+        console.log(data);
+        this.findbungalowPropose(this.reservationBungalow.dateDebutHelp, this.reservationBungalow.dateFinHelp);
+        this.findByReservationBungalowEnAttente();
+      }
+      , error => {
+        console.log('error proposition');
+      })
+
+  }
 
 }

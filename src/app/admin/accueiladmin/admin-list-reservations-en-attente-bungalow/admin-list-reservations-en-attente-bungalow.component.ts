@@ -15,10 +15,11 @@ export class AdminListReservationsEnAttenteBungalowComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['code','username', 'dateDebut', 'dateFin','disponibilite','reject'];
+  displayedColumns: string[] = ['code','username', 'dateDebut', 'dateFin','disponibilite','propose','reject'];
   dataSource = new MatTableDataSource<ReservationBungalow>(this.reservationBungalows);
 
   displayBasic: boolean;
+  displayBasic2: boolean;
   displayMaximizable: boolean;
 
 
@@ -46,6 +47,16 @@ export class AdminListReservationsEnAttenteBungalowComponent implements OnInit {
     this.reservationBungalow=res;
     this.displayBasic = true;
     this.adminService.findBungalowDisponible(this.reservationBungalow.dateDebutHelp,this.reservationBungalow.dateFinHelp);
+
+
+  }
+  showBasicDialog2(dateDebut:string,dateFin:string,res:ReservationBungalow) {
+
+    res.dateDebutHelp=dateDebut;
+    res.dateFinHelp=dateFin;
+    this.reservationBungalow=res;
+    this.displayBasic2 = true;
+    this.adminService.findbungalowPropose(this.reservationBungalow.dateDebutHelp,this.reservationBungalow.dateFinHelp);
 
 
   }
