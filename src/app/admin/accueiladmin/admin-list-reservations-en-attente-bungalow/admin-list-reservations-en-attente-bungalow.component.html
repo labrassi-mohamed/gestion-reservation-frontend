@@ -30,6 +30,12 @@
       <td mat-cell class="align" *matCellDef="let element"><span (click)="showBasicDialog(element.dateDebut,element.dateFin,element)">
         <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
     </ng-container>
+    <ng-container matColumnDef="propose">
+      <th mat-header-cell class="align" *matHeaderCellDef> Check</th>
+      <td mat-cell class="align" *matCellDef="let element"><span (click)="showBasicDialog2(element.dateDebut,element.dateFin,element)">
+        <button class="btn-white btn"><i class="fa-solid fa-arrow-up-right-from-square"></i></button></span></td>
+    </ng-container>
+
     <ng-container matColumnDef="reject">
       <th mat-header-cell class="align" *matHeaderCellDef> Reject</th>
       <td mat-cell class="align" *matCellDef="let element"><span (click)="reject(element.code)">
@@ -62,6 +68,17 @@
     <!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
   </ng-template>
 </p-dialog>
+
+
+<p-dialog header="Proposition " [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+
+  <app-admin-bungalow-propose></app-admin-bungalow-propose>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic2=false" label="Ok" styleClass="p-button-text"></p-button>
+    <!--    <p-button icon="pi pi-times" (click)="displayBasic=false" label="No"></p-button>-->
+  </ng-template>
+</p-dialog>
+
 
 
 <!--Chech Dialogue-->

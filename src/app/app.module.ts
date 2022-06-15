@@ -90,6 +90,10 @@ import {QuiSommesNousComponent} from "./adherent/home/qui-sommes-nous/qui-sommes
 import {CommonModule} from "@angular/common";
 import {ToastModule} from 'primeng/toast';
 import {ConfirmPopupModule} from "primeng/confirmpopup";
+import {
+  AdminChambreProposeComponent
+} from "./admin/accueiladmin/admin-list-reservations-en-attente-chambre/admin-chambre-propose/admin-chambre-propose.component";
+import { AdminBungalowProposeComponent } from './admin/accueiladmin/admin-list-reservations-en-attente-bungalow/admin-bungalow-propose/admin-bungalow-propose.component';
 
 
 @NgModule({
@@ -135,6 +139,8 @@ import {ConfirmPopupModule} from "primeng/confirmpopup";
     AcceuillComponent,
     ContactComponent,
     QuiSommesNousComponent,
+    AdminChambreProposeComponent,
+    AdminBungalowProposeComponent
   ],
   imports: [
     AppRoutingModule,
