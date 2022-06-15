@@ -36,8 +36,7 @@ export class LoginComponent implements OnInit {
       console.log("connected")
     } else if (this.authService.error == true) {
       this.messageService.add({severity: 'error', summary: 'Email ou mot de passe incorect'});
-    } else
-      this.messageService.add({severity: 'error', summary: '*Champ est obligatoire'});
+    }
   }
 
 }

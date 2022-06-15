@@ -97,11 +97,22 @@ export class ReservationService {
     this.getReservationBungalows(username);
   }
 
-  public annuler(code){
+  public annulerChambre(code){
     return this.http.delete<number>(`${this.urlPath}/reservation-chambre/${code}`).subscribe(
       data => {
         console.log(data);
         this.allReservationChambresAdherent();
+      }, error => {
+        console.error()
+      }
+    )
+  }
+
+  public annulerBungalow(code){
+    return this.http.delete<number>(`${this.urlPath}/reservation-bungalow/${code}`).subscribe(
+      data => {
+        console.log(data);
+        this.allReservationBungalowAdherent();
       }, error => {
         console.error()
       }

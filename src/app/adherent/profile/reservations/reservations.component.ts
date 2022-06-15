@@ -15,14 +15,17 @@ import {ConfirmationService} from 'primeng/api';
       margin: 0 .5rem 0 0;
       min-width: 10rem;
     }
+
     p {
       margin: 0;
     }
+
     .confirmation-content {
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     :host ::ng-deep .p-dialog .p-button {
       min-width: 6rem;
     }
@@ -45,7 +48,6 @@ export class ReservationsComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
-
   showDialog1() {
     this.dialog1 = true;
   }
@@ -54,17 +56,17 @@ export class ReservationsComponent implements OnInit {
     this.dialog2 = true;
   }
 
-  annuler(code) {
-    this.serviceResrvation.annuler(code);
-  }
-
-  confirm(event: Event, code: string) {
+  confirm(event: Event, code: string, type: string) {
     this.confirmationService.confirm({
       target: event.target,
-      message: "Are you sure to delete that?",
+      message: "Vous êtes sûre de supprimer ?",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.serviceResrvation.annuler(code);
+        if (type === "chambre"){
+          this.serviceResrvation.annulerChambre(code);
+        }else if (type === "bungalow"){
+          this.serviceResrvation.annulerBungalow(code);
+        }
         this.messageService.add({
           severity: "info",
           summary: "Votre reservation est annuler",

@@ -12,7 +12,7 @@ import {MatPaginator} from "@angular/material/paginator";
 export class AdminListReservationsBungalowConfirmeComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['code','bungalow', 'dateDebut', 'dateFin','annuler'];
+  displayedColumns: string[] = ['code','email', 'dateDebut', 'dateFin'];
   dataSource = new MatTableDataSource<ReservationBungalow>(this.reservationBungalows);
 
 

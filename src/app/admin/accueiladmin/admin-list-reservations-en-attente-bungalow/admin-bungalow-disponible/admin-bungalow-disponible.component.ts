@@ -25,7 +25,7 @@ export class AdminBungalowDisponibleComponent implements OnInit {
     this.adminService.reservationBungalow = value;
   }
 
-  displayedColumns: string[] = ['numero','espace', 'capacity','description', 'prix','confirmer'];
+  displayedColumns: string[] = ['numero','espace', 'capacity', 'prix','confirmer'];
 
   ngOnInit(): void {
     this.adminService.findBungalowDisponible(this.reservationBungalow.dateDebutHelp,this.reservationBungalow.dateFinHelp);
