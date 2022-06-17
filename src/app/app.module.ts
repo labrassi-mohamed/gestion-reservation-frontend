@@ -21,7 +21,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatListModule} from "@angular/material/list";
-import {MatToolbar, MatToolbarModule} from "@angular/material/toolbar";
+import {MatToolbarModule} from "@angular/material/toolbar";
 import {TabViewModule} from "primeng/tabview";
 import {LogementsComponent} from './adherent/home/logements/logements.component';
 import {ChambreComponent} from './adherent/logements/chambre/chambre.component';
@@ -94,6 +94,8 @@ import {
   AdminChambreProposeComponent
 } from "./admin/accueiladmin/admin-list-reservations-en-attente-chambre/admin-chambre-propose/admin-chambre-propose.component";
 import { AdminBungalowProposeComponent } from './admin/accueiladmin/admin-list-reservations-en-attente-bungalow/admin-bungalow-propose/admin-bungalow-propose.component';
+import {StyleClassModule} from "primeng/styleclass";
+import { ProposeComponent } from './adherent/profile/reservations/propose/propose.component';
 
 
 @NgModule({
@@ -140,7 +142,8 @@ import { AdminBungalowProposeComponent } from './admin/accueiladmin/admin-list-r
     ContactComponent,
     QuiSommesNousComponent,
     AdminChambreProposeComponent,
-    AdminBungalowProposeComponent
+    AdminBungalowProposeComponent,
+    ProposeComponent
   ],
   imports: [
     AppRoutingModule,
@@ -177,7 +180,7 @@ import { AdminBungalowProposeComponent } from './admin/accueiladmin/admin-list-r
     CommonModule,
     ToastModule,
     ConfirmPopupModule,
-
+    StyleClassModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

@@ -29,10 +29,10 @@ export class AdminService {
   private _adherents: Array<Adherent>;
   private _adherent: Adherent;
   private _logement: Logement;
-  private _chambreLibre:ChambreLibre;
-  private _chambreLibres:Array<ChambreLibre>;
- private _bungalowLibre:ChambreLibre;
- private _bungalowLibres:Array<BungalowLibre>;
+  private _chambreLibre: ChambreLibre;
+  private _chambreLibres: Array<ChambreLibre>;
+  private _bungalowLibre: ChambreLibre;
+  private _bungalowLibres: Array<BungalowLibre>;
   private urladmin = 'http://localhost:8036/api/v1/admin';
 
   constructor(private http: HttpClient) {
@@ -109,7 +109,7 @@ export class AdminService {
 
   rejectReservationBungalow(code: string) {
 
-    this.http.put<number>(this.urladmin + '/reservationBungalow/rejectReservationBungalow/'+code, {}).subscribe(
+    this.http.put<number>(this.urladmin + '/reservationBungalow/rejectReservationBungalow/' + code, {}).subscribe(
       data => {
         console.log('reservation rejecte');
         console.log(data);
@@ -117,13 +117,14 @@ export class AdminService {
 
       }
       , error => {
-console.log('error reject')
+        console.log('error reject')
       }
+    )
+  }
 
-      )}
   rejectReservationChambre(code: string) {
 
-    this.http.put<number>(this.urladmin + '/reservationChambre/rejectReservationChambre/'+code, {}).subscribe(
+    this.http.put<number>(this.urladmin + '/reservationChambre/rejectReservationChambre/' + code, {}).subscribe(
       data => {
         console.log('reservation rejecte');
         console.log(data);
@@ -131,10 +132,11 @@ console.log('error reject')
 
       }
       , error => {
-console.log('error reject')
+        console.log('error reject')
       }
+    )
+  }
 
-      )}
   findByreservationactuelle() {
     this.http.get<Array<Reservation>>(this.urladmin + '/reservation/reservationActuelle').subscribe(
       data => {
@@ -226,6 +228,7 @@ console.log('error reject')
 
       })
   }
+
   findbungalowPropose(dateDebut: string, dateFin: string) {
 
     this.http.get<Array<BungalowLibre>>(this.urladmin + '/bungalow/PropositionDisponible/' + dateDebut + '/' + dateFin).subscribe(
@@ -239,6 +242,7 @@ console.log('error reject')
 
       })
   }
+
   findBungalowDisponible(dateDebut: string, dateFin: string) {
 
     this.http.get<Array<Bungalow>>(this.urladmin + '/bungalow/BungalowDisponible/' + dateDebut + '/' + dateFin).subscribe(
@@ -447,7 +451,6 @@ console.log('error reject')
     this._reservation = value;
   }
 
-
   get reservationChambre(): ReservationChambre {
     if (this._reservationChambre == null) {
       this._reservationChambre = new ReservationChambre();
@@ -507,10 +510,9 @@ console.log('error reject')
     this._logement = value;
   }
 
-
   get chambreLibre(): ChambreLibre {
-    if(this._chambreLibre ==null){
-      this._chambreLibre= new ChambreLibre();
+    if (this._chambreLibre == null) {
+      this._chambreLibre = new ChambreLibre();
     }
     return this._chambreLibre;
   }
@@ -520,8 +522,8 @@ console.log('error reject')
   }
 
   get chambreLibres(): Array<ChambreLibre> {
-    if(this._chambreLibres ==null){
-      this._chambreLibres= new Array<ChambreLibre>();
+    if (this._chambreLibres == null) {
+      this._chambreLibres = new Array<ChambreLibre>();
     }
     return this._chambreLibres;
   }
@@ -532,8 +534,8 @@ console.log('error reject')
 
 
   get bungalowLibre(): ChambreLibre {
-    if(this._bungalowLibre==null){
-      this._bungalowLibre=new ChambreLibre();
+    if (this._bungalowLibre == null) {
+      this._bungalowLibre = new ChambreLibre();
     }
     return this._bungalowLibre;
   }
@@ -544,8 +546,8 @@ console.log('error reject')
 
 
   get bungalowLibres(): Array<BungalowLibre> {
-    if(this._bungalowLibres==null){
-      this._bungalowLibres=new Array<BungalowLibre>();
+    if (this._bungalowLibres == null) {
+      this._bungalowLibres = new Array<BungalowLibre>();
     }
     return this._bungalowLibres;
   }
@@ -554,8 +556,8 @@ console.log('error reject')
     this._bungalowLibres = value;
   }
 
-  proposeReservationChambre(numero:number) {
-    this.http.put<number>(this.urladmin + '/reservationChambre/proposeReservation/'+numero+'/' , this._reservationChambre).subscribe(
+  proposeReservationChambre(numero: number) {
+    this.http.put<number>(this.urladmin + '/reservationChambre/proposeReservation/' + numero + '/', this._reservationChambre).subscribe(
       data => {
         console.log('good proposition reservation chambre');
         console.log(data);
@@ -567,8 +569,9 @@ console.log('error reject')
       })
 
   }
-  proposeReservationBungalow(numero:number) {
-    this.http.put<number>(this.urladmin + '/reservationBungalow/proposeReservation/'+numero+'/' , this._reservationBungalow).subscribe(
+
+  proposeReservationBungalow(numero: number) {
+    this.http.put<number>(this.urladmin + '/reservationBungalow/proposeReservation/' + numero + '/', this._reservationBungalow).subscribe(
       data => {
         console.log('good proposition reservation bungalow');
         console.log(data);

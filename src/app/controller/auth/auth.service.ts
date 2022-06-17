@@ -5,6 +5,8 @@ import {baseUrl, environment, loginUrl} from "../../../environments/environment"
 import {TokenService} from "../service/token.service";
 import {Router} from "@angular/router";
 import {Adherent} from "../model/adherent.model";
+import Swal from "sweetalert2";
+import {MessageService} from "primeng/api";
 
 @Injectable({
   providedIn: 'root',
@@ -34,10 +36,17 @@ export class AuthService {
         const jwt = resp.headers.get('Authorization');
         jwt != null ? this.tokenService.saveToken(jwt) : false;
         this.loadInfos();
-        this.error = false;
         // console.log(this.tokenService.getUsername());
         console.log('you are logged in successfully');
+        this.error = false;
         this.router.navigate(['/profile/user']);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Bonjour ' + username,
+          showConfirmButton: false,
+          timer: 3000
+        })
       }, (error: HttpErrorResponse) => {
         this.error = true;
         console.log("error");
@@ -91,9 +100,23 @@ export class AuthService {
         this.loadInfos();
         console.log('you are logged in successfully');
         this.router.navigate(['/admin/accueil']);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Bonjour ' + username,
+          showConfirmButton: false,
+          timer: 3000
+        })
       }, (error: HttpErrorResponse) => {
         this.error = error.error;
         console.log(error);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Votre email ou mot de passe incorrect',
+          showConfirmButton: true,
+          timer: 5000
+        })
       }
     );
   }

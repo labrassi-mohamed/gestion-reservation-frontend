@@ -15,11 +15,9 @@ import {ConfirmationService} from 'primeng/api';
       margin: 0 .5rem 0 0;
       min-width: 10rem;
     }
-
     p {
       margin: 0;
     }
-
     .confirmation-content {
       display: flex;
       align-items: center;
@@ -35,6 +33,7 @@ export class ReservationsComponent implements OnInit {
 
   dialog1: boolean;
   dialog2: boolean;
+  displayBasic: boolean;
 
   constructor(private serviceResrvation: ReservationService,
               private confirmationService: ConfirmationService,
@@ -83,6 +82,8 @@ export class ReservationsComponent implements OnInit {
 
 
   // Getters && Setters
+  btn: any;
+
   get reservationChambres(): Array<ReservationChambre> {
     return this.serviceResrvation.reservationChambres;
   }
@@ -95,4 +96,8 @@ export class ReservationsComponent implements OnInit {
     return this.serviceResrvation.count;
   }
 
+  getProposition(element: ReservationBungalow) {
+    // this.reservationBungalow=element;
+
+  }
 }

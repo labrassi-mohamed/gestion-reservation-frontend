@@ -31,12 +31,6 @@ export class LoginadminComponent implements OnInit {
     const username = formValues.username;
     const passowrd = formValues.password;
     this.authService.loginAdmin(username, passowrd);
-    if (this.authService.error != null){
-      this.messageService.add({severity:'success', summary:'Vérifiez vos boîte email'});
-      console.log("ta9 amarch")
-    }else {
-      console.log("wa raah makhdamch had login")
-    }
   }
 
 }
