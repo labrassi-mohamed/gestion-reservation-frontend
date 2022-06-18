@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Reservation} from "../model/reservation.model";
 import {Registration} from "../model/registration.model";
