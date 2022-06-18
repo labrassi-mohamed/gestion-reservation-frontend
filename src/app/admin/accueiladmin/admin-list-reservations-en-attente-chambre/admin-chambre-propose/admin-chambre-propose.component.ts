@@ -12,12 +12,25 @@ import {ChambreLibre} from "../../../../controller/model/chambre-libre.model";
 })
 export class AdminChambreProposeComponent implements OnInit {
 
+  displayedColumns: string[] = ['numero','dateDebut','dateFin','proposer'];
+  date10: any;
 
   constructor(private adminService: AdminService) {
   }
 
+  ngOnInit(): void {
+    this.adminService.findchambresPropose(this.reservation.dateDebutHelp,this.reservation.dateFinHelp);
+  }
+
+  proposer(dateDebutP:Date,dateFinP:Date,numero:number) {
+    console.log("tttt")
+    this.reservationChambre.dateDebutP=dateDebutP;
+    this.reservationChambre.dateFinP=dateFinP;
+    this.adminService.proposeReservationChambre(numero);
+  }
 
 
+  // Getters & Setters
   get reservationChambre(): ReservationChambre {
     return this.adminService.reservationChambre;
   }
@@ -38,21 +51,6 @@ export class AdminChambreProposeComponent implements OnInit {
   get reservation(): Reservation {
 
     return this.adminService.reservation;
-  }
-
-
-  displayedColumns: string[] = ['numero','dateDebut','dateFin','proposer'];
-  date10: any;
-
-  ngOnInit(): void {
-    this.adminService.findchambresPropose(this.reservation.dateDebutHelp,this.reservation.dateFinHelp);
-  }
-
-  proposer(dateDebutP:Date,dateFinP:Date,numero:number) {
-    this.reservationChambre.dateDebutP=dateDebutP;
-    this.reservationChambre.dateFinP=dateFinP;
-    this.adminService.proposeReservationChambre(numero);
-
   }
 
 }

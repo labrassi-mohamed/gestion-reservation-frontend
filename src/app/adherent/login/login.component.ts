@@ -33,11 +33,10 @@ export class LoginComponent implements OnInit {
     const passowrd = formValues.password;
     this.authService.loginAdherent(username, passowrd);
     if (this.authService.error == false) {
-      console.log("connected")
-    } else if (this.authService.error == true) {
+      // console.log("connected")
+    } else if (this.authService.connected == false || username.isEmpty() || passowrd.isEmpty() || (username.isEmpty() && passowrd.isEmpty())) {
       this.messageService.add({severity: 'error', summary: 'Email ou mot de passe incorect'});
-    } else
-      this.messageService.add({severity: 'error', summary: '*Champ est obligatoire'});
+    }
   }
 
 }

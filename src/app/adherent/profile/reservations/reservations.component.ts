@@ -23,6 +23,7 @@ import {ConfirmationService} from 'primeng/api';
       align-items: center;
       justify-content: center;
     }
+
     :host ::ng-deep .p-dialog .p-button {
       min-width: 6rem;
     }
@@ -32,6 +33,7 @@ export class ReservationsComponent implements OnInit {
 
   dialog1: boolean;
   dialog2: boolean;
+  displayBasic: boolean;
 
   constructor(private serviceResrvation: ReservationService,
               private confirmationService: ConfirmationService,
@@ -45,7 +47,6 @@ export class ReservationsComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
-
   showDialog1() {
     this.dialog1 = true;
   }
@@ -54,17 +55,17 @@ export class ReservationsComponent implements OnInit {
     this.dialog2 = true;
   }
 
-  annuler(code) {
-    this.serviceResrvation.annuler(code);
-  }
-
-  confirm(event: Event, code: string) {
+  confirm(event: Event, code: string, type: string) {
     this.confirmationService.confirm({
       target: event.target,
-      message: "Are you sure to delete that?",
+      message: "Vous êtes sûre de supprimer ?",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
-        this.serviceResrvation.annuler(code);
+        if (type === "chambre"){
+          this.serviceResrvation.annulerChambre(code);
+        }else if (type === "bungalow"){
+          this.serviceResrvation.annulerBungalow(code);
+        }
         this.messageService.add({
           severity: "info",
           summary: "Votre reservation est annuler",
@@ -81,6 +82,8 @@ export class ReservationsComponent implements OnInit {
 
 
   // Getters && Setters
+  btn: any;
+
   get reservationChambres(): Array<ReservationChambre> {
     return this.serviceResrvation.reservationChambres;
   }
@@ -93,4 +96,8 @@ export class ReservationsComponent implements OnInit {
     return this.serviceResrvation.count;
   }
 
+  getProposition(element: ReservationBungalow) {
+    // this.reservationBungalow=element;
+
+  }
 }

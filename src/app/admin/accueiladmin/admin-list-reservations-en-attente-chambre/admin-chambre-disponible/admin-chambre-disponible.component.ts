@@ -11,6 +11,8 @@ import {ReservationChambre} from "../../../../controller/model/reservation-chamb
 })
 export class AdminChambreDisponibleComponent implements OnInit {
 
+  displayedColumns: string[] = ['numero','espace', 'capacity', 'prix','confirmer'];
+  date10: any;
 
   constructor(private adminService: AdminService) {
   }
@@ -38,10 +40,6 @@ export class AdminChambreDisponibleComponent implements OnInit {
 
     return this.adminService.reservation;
   }
-
-
-  displayedColumns: string[] = ['numero','espace', 'capacity','description', 'prix','confirmer'];
-  date10: any;
 
   ngOnInit(): void {
     this.adminService.findchambresDisponible(this.reservation.dateDebutHelp,this.reservation.dateFinHelp);

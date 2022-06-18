@@ -2,20 +2,20 @@
   <table mat-table [dataSource]="bungalows">
     <!-- Name Column -->
     <ng-container matColumnDef="numero">
-      <th mat-header-cell *matHeaderCellDef> NO.</th>
+      <th mat-header-cell *matHeaderCellDef>NO.</th>
       <td mat-cell *matCellDef="let element"> {{element.numero}}  </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="espace">
-      <th mat-header-cell *matHeaderCellDef> Espace</th>
+      <th mat-header-cell *matHeaderCellDef>Espace</th>
       <td mat-cell *matCellDef="let element"> {{element.espace}} m²</td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="capacity">
-      <th mat-header-cell *matHeaderCellDef> Capacity</th>
-      <td mat-cell *matCellDef="let element"> {{element.capacity}} </td>
+      <th mat-header-cell *matHeaderCellDef>Capacity</th>
+      <td mat-cell *matCellDef="let element">{{element.capacity}} </td>
     </ng-container>
 
     <ng-container matColumnDef="description">
@@ -31,9 +31,13 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="delete">
       <th class="align" mat-header-cell *matHeaderCellDef> Delete</th>
-      <td class="align" mat-cell *matCellDef="let element"><span (click)="delete(element.reference)">
-        <button class="btn-white btn">
-        <i class="fa-solid fa-circle-minus"></i> </button></span></td>
+      <td class="align" mat-cell *matCellDef="let element">
+        <span (click)="confirm($event, element.reference)">
+          <button class="btn-white btn">
+            <i class="fa-solid fa-circle-minus"></i>
+          </button>
+        </span>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

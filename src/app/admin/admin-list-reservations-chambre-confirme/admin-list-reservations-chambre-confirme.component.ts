@@ -12,7 +12,7 @@ import {ReservationChambre} from "../../controller/model/reservation-chambre.mod
 })
 export class AdminListReservationsChambreConfirmeComponent implements OnInit {
 
-  displayedColumns: string[] = ['code', 'chambre', 'dateDebut', 'dateFin', 'annuler'];
+  displayedColumns: string[] = ['code','email', 'dateDebut', 'dateFin'];
   dataSource = new MatTableDataSource<ReservationChambre>(this.reservationChambres);
 
 

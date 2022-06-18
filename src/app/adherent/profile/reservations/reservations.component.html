@@ -17,7 +17,8 @@
       <th scope="col">Date Fin</th>
       <th scope="col">État</th>
       <th scope="col">Annuler</th>
-<!--      <th scope="col" class="view">Détail</th>-->
+      <th scope="col"></th>
+      <!--      <th scope="col" class="view">Détail</th>-->
     </tr>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
       <td>{{element.beneficiaire}}</td>
       <td>{{element.dateDebut}}</td>
       <td>{{element.dateFin}}</td>
+      <!-- Etat-->
       <td *ngIf="element.confirmation == false && element.reject == false;">
         <i class="fa fa-circle me-1" style="color: #ea8857;"></i>En Cours...
       </td>
@@ -37,26 +39,43 @@
       <td *ngIf="element.confirmation == true && element.reject == false;">
         <i class="fa fa-circle me-1" style="color: #08e30b;"></i>Valide
       </td>
-      <td class="view"><i (click)="annuler(element.code)" class="fa fa-lg fa-trash btn btn-sm"
-                          style="color: #DC4826;"></i></td>
-<!--      <td class="view"><i class="fa fa-lg fa-eye btn btn-sm" (click)="showDialog1()"></i></td>-->
-<!--      <p-dialog header="Détail" [(visible)]="dialog1" [modal]="true" [style]="{width: '50vw'}"-->
-<!--                [draggable]="false" [resizable]="false">-->
-<!--        <p class="m-0" *ngIf="element.confirmation == false && element.reject == false;">-->
-<!--          Votre demande est bien enregistre-->
-<!--        </p>-->
-<!--        <p class="m-0" *ngIf="element.confirmation == true && element.reject == false;">-->
-<!--          good-->
-<!--        </p>-->
-<!--        <p class="m-0" *ngIf="element.confirmation == false && element.reject == true;">-->
-<!--          not good-->
-<!--        </p>-->
-<!--        <p>anuuler ma demande</p>-->
-<!--        <ng-template pTemplate="footer">-->
-<!--          <p-button icon="pi pi-check" (click)="dialog1=false" label="Ok" styleClass="p-button-text"></p-button>-->
-<!--        </ng-template>-->
-<!--      </p-dialog>-->
+      <!-- Annuler-->
+      <td class="view"><i (click)="confirm($event, element.code, element.type)" class="fa fa-lg fa-trash btn btn-sm"
+                          style="color: #DC4826;"></i>
+        <p-confirmPopup></p-confirmPopup>
+        <p-toast></p-toast>
+      </td>
+      <!-- Propose -->
+      <td *ngIf="element.proposition == true; else btn ">
+        <button pButton pRipple type="button" label="Propose"
+                class="p-button-outlined p-button-sm p-2 w-25 p-button-rounded p-button-success" (click)="this.displayBasic = true">
+        </button>
+      </td>
+      <ng-template #btn>
+        <td>
+          <button pButton pRipple type="button" label="Propose"
+                  class="p-button-outlined p-button-sm p-2 w-25 p-button-rounded p-button-danger ">
+          </button>
+        </td>
+      </ng-template>
     </tr>
+      <!--      <td class="view"><i class="fa fa-lg fa-eye btn btn-sm" (click)="showDialog1()"></i></td>-->
+      <!--      <p-dialog header="Détail" [(visible)]="dialog1" [modal]="true" [style]="{width: '50vw'}"-->
+      <!--                [draggable]="false" [resizable]="false">-->
+      <!--        <p class="m-0" *ngIf="element.confirmation == false && element.reject == false;">-->
+      <!--          Votre demande est bien enregistre-->
+      <!--        </p>-->
+      <!--        <p class="m-0" *ngIf="element.confirmation == true && element.reject == false;">-->
+      <!--          good-->
+      <!--        </p>-->
+      <!--        <p class="m-0" *ngIf="element.confirmation == false && element.reject == true;">-->
+      <!--          not good-->
+      <!--        </p>-->
+      <!--        <p>anuuler ma demande</p>-->
+      <!--        <ng-template pTemplate="footer">-->
+      <!--          <p-button icon="pi pi-check" (click)="dialog1=false" label="Ok" styleClass="p-button-text"></p-button>-->
+      <!--        </ng-template>-->
+      <!--      </p-dialog>-->
     <tr *ngFor="let element of reservationChambres">
       <th scope="row">{{element.code}}</th>
       <td>{{element.type}}</td>
@@ -75,20 +94,43 @@
         <i class="fa fa-circle me-1" style="color: #08e30b;"></i>Valide
       </td>
       <!-- Annuler -->
-      <td class="view"><i (click)="confirm($event, element.code)" class="fa fa-lg fa-trash btn btn-sm"
+      <td class="view"><i (click)="confirm($event, element.code, element.type)" class="fa fa-lg fa-trash btn btn-sm"
                           style="color: #DC4826;"></i>
         <p-confirmPopup></p-confirmPopup>
         <p-toast></p-toast>
       </td>
-      <!-- Show Dialog-->
-<!--      <td class="view"><i class="fa fa-lg fa-eye btn btn-sm" (click)="showDialog2()"></i></td>-->
-<!--      <div *ngIf="element.confirmation == true && element.reject == false;">-->
-<!--        <p-dialog header="Title" [(visible)]="dialog2">-->
-<!--          Content-->
-<!--        </p-dialog>-->
-<!--      </div>-->
+      <!-- Propose -->
+      <td *ngIf="element.proposition == true; else btn ">
+        <button pButton pRipple type="button" label="Propose"
+                class="p-button-outlined p-button-sm p-2 w-25 p-button-rounded p-button-success" (click)="this.displayBasic = true">
+        </button>
+      </td>
+      <ng-template #btn>
+        <td>
+          <button pButton pRipple type="button" label="Propose"
+                  class="p-button-outlined p-button-sm p-2 w-25 p-button-rounded p-button-danger ">
+          </button>
+        </td>
+      </ng-template>
     </tr>
     </tbody>
   </table>
 </div>
 
+
+<!-- dialogues -->
+<!-- Prposition chambres-->
+<p-dialog header="proposition" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <app-propose></app-propose>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+
+<!-- Prposition Bungalows-->
+<p-dialog header="proposition" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  <app-propose></app-propose>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

@@ -18,7 +18,7 @@
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
     <img
       class="avatar mat-elevation-z8"
-      src="https://source.unsplash.com/c_GmwfHBDzk/200x200"
+      src="https://pic.onlinewebfonts.com/svg/img_329115.png"
       alt="err"/>
 
     <h4 class="name h6">{{profileService.adherent.lastname}} {{profileService.adherent.firstname}}</h4>
@@ -26,6 +26,10 @@
 
     <mat-divider></mat-divider>
 
+    <button mat-button class="menu-button" routerLink="">
+      <i class="fa-solid fa-home"></i>
+      <span>Accueil</span>
+    </button>
     <button mat-button class="menu-button" routerLink="user">
       <i class="fa fa-user"></i>
       <span>Profile</span>
@@ -33,10 +37,6 @@
     <button mat-button class="menu-button" routerLink="reservations">
       <i class="fa-brands fa-buromobelexperte"></i>
       <span>Reservations</span>
-    </button>
-    <button mat-button class="menu-button" routerLink="/about">
-      <i class="fa-solid fa-address-card"></i>
-      <span>About</span>
     </button>
 
     <mat-divider></mat-divider>

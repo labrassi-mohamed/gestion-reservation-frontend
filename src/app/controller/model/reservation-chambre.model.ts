@@ -19,6 +19,7 @@ export class ReservationChambre {
   public user: Adherent;
   public dateDebutHelp: string;
   public dateFinHelp: string;
+  public proposition: boolean;
   public chambre: Chambre;
 
 }

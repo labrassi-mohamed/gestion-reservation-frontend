@@ -3,6 +3,8 @@ import {RegistrationService} from "../../controller/service/registration.service
 import {Registration} from "../../controller/model/registration.model";
 import {NgForm} from "@angular/forms";
 import {MessageService} from "primeng/api";
+import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +15,8 @@ import {MessageService} from "primeng/api";
 export class RegistrationComponent implements OnInit {
 
   constructor(private service: RegistrationService,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -43,8 +46,16 @@ export class RegistrationComponent implements OnInit {
           this.messageService.add({severity:'error', summary:'Adhérent existe déjà ', detail:'(essayez de vous connecter)'});
         } else if (data == 1) {
           console.log("1")
-          this.messageService.add({severity:'success', summary:'Vérifiez vos boîte email'});
+          // this.messageService.add({severity:'success', summary:'Vérifiez vos boîte email'});
           this.resetResgistration();
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Vérifiez vos boîte email',
+            showConfirmButton: true,
+            timer: 5000
+          })
+          this.router.navigate(['/login'])
         }
       }, error => {
         console.log(error.message)

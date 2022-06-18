@@ -19,6 +19,7 @@ export class ReservationBungalow {
   public user: Adherent;
   public dateDebutHelp: string;
   public dateFinHelp: string;
+  public proposition: boolean;
   public bungalow: Bungalow;
 
 }

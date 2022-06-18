@@ -31,9 +31,9 @@ export class ReservationComponent implements OnInit {
   }
 
 // Demande de reservation
-  demandeReservation() {
+  async demandeReservation() {
     if (this.reservation.type === "chambre") {
-      this.cloneReservationChambre(this.reservation);
+      await this.cloneReservationChambre(this.reservation);
       this.service.demandeReservationChambre();
       if (this.service.error == false) {
         Swal.fire({
@@ -52,7 +52,7 @@ export class ReservationComponent implements OnInit {
         })
       }
     } else if (this.reservation.type === "bungalow") {
-      this.cloneReservationBungalow(this.reservation)
+      await this.cloneReservationBungalow(this.reservation);
       this.service.demandeReservationBungalow();
       if (this.service.error == false) {
         Swal.fire({
@@ -62,7 +62,7 @@ export class ReservationComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/profile/reservations']);
       } else if (this.service.error == true) {
         Swal.fire({
           icon: 'error',

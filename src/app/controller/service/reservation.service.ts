@@ -25,6 +25,7 @@ export class ReservationService {
   private _reservations: Array<Reservation>;
   public error: boolean | false;
   private _count = 0;
+  private proposition = true;
 
   constructor(private http: HttpClient,
               private adherentService: AdherentService,
@@ -97,11 +98,70 @@ export class ReservationService {
     this.getReservationBungalows(username);
   }
 
-  public annuler(code){
+  public annulerChambre(code) {
     return this.http.delete<number>(`${this.urlPath}/reservation-chambre/${code}`).subscribe(
       data => {
         console.log(data);
         this.allReservationChambresAdherent();
+      }, error => {
+        console.error()
+      }
+    )
+  }
+
+  public annulerBungalow(code) {
+    return this.http.delete<number>(`${this.urlPath}/reservation-bungalow/${code}`).subscribe(
+      data => {
+        console.log(data);
+        this.allReservationBungalowAdherent();
+      }, error => {
+        console.error()
+      }
+    )
+  }
+
+  //  Accepter une proposition
+  public accepterReservationProposerChambre() {
+    return this.http.put(``, "").subscribe(
+      data => {
+        console.log(data);
+        this.allReservationBungalowAdherent();
+      }, error => {
+        console.error()
+      }
+    )
+  }
+
+  //  Accepter une proposition
+  public accepterReservationProposerBungalow() {
+    return this.http.put(``, "").subscribe(
+      data => {
+        console.log(data);
+        this.allReservationBungalowAdherent();
+      }, error => {
+        console.error()
+      }
+    )
+  }
+
+  //  get all proposition chambre
+  public getAllPropsitionChambre() {
+    return this.http.get(`${this.urlPath}/reservation-chambre/${this.proposition}`).subscribe(
+      data => {
+        console.log(data);
+        this.allReservationBungalowAdherent();
+      }, error => {
+        console.error()
+      }
+    )
+  }
+
+  //  get all proposition bungalow
+  public getAllPropsitionBungalow() {
+    return this.http.get(`${this.urlPath}/reservation-bungalows/${this.proposition}`,).subscribe(
+      data => {
+        console.log(data);
+        this.allReservationBungalowAdherent();
       }, error => {
         console.error()
       }
