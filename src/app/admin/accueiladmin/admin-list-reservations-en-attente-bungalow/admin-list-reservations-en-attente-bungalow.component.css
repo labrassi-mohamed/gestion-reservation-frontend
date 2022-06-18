@@ -27,3 +27,7 @@ table {
 .fa-arrow-up-right-from-square{
   color: #0324c0;
 }
+button{
+  font-family: "Times New Roman",sans-serif !important;
+  font-style: normal !important;
+}

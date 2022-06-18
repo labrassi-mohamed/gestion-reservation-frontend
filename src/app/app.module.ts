@@ -95,7 +95,12 @@ import {
 } from "./admin/accueiladmin/admin-list-reservations-en-attente-chambre/admin-chambre-propose/admin-chambre-propose.component";
 import { AdminBungalowProposeComponent } from './admin/accueiladmin/admin-list-reservations-en-attente-bungalow/admin-bungalow-propose/admin-bungalow-propose.component';
 import {StyleClassModule} from "primeng/styleclass";
-import { ProposeComponent } from './adherent/profile/reservations/propose/propose.component';
+import { AdminStatistiqueComponent } from './admin/admin-statistique/admin-statistique.component';
+import { AdminCardsComponent } from './admin/admin-statistique/admin-cards/admin-cards.component';
+import { AdminChartComponent } from './admin/admin-statistique/admin-chart/admin-chart.component';
+import {Chart} from "chart.js";
+import {ChartModule} from "primeng/chart";
+// import { ProposeComponent } from './adherent/profile/reservations/propose/propose.component';
 
 
 @NgModule({
@@ -143,7 +148,10 @@ import { ProposeComponent } from './adherent/profile/reservations/propose/propos
     QuiSommesNousComponent,
     AdminChambreProposeComponent,
     AdminBungalowProposeComponent,
-    ProposeComponent
+    AdminStatistiqueComponent,
+    AdminCardsComponent,
+    AdminChartComponent,
+    // ProposeComponent
   ],
   imports: [
     AppRoutingModule,
@@ -181,6 +189,7 @@ import { ProposeComponent } from './adherent/profile/reservations/propose/propos
     ToastModule,
     ConfirmPopupModule,
     StyleClassModule,
+    ChartModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

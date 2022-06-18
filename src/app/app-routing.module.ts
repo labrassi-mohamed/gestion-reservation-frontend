@@ -19,6 +19,7 @@ import {ReservationsComponent} from "./adherent/profile/reservations/reservation
 import {AcceuillComponent} from "./adherent/home/acceuill/acceuill.component";
 import {ContactComponent} from "./adherent/home/contact/contact.component";
 import {QuiSommesNousComponent} from "./adherent/home/qui-sommes-nous/qui-sommes-nous.component";
+import {AdminStatistiqueComponent} from "./admin/admin-statistique/admin-statistique.component";
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
@@ -73,6 +74,12 @@ const routes: Routes = [
         component: AdminAdherentsComponent,
         canActivate: [AuthGuard]
       },
+      {
+        path: "statistique",
+        component: AdminStatistiqueComponent,
+        canActivate: [AuthGuard]
+      },
+
     ]
   },
   {

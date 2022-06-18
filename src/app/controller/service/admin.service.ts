@@ -9,6 +9,7 @@ import {ReservationBungalow} from "../model/reservation-bungalow.model";
 import {Logement} from "../model/logement.model";
 import {ChambreLibre} from "../model/chambre-libre.model";
 import {BungalowLibre} from "../model/bungalow-libre.model";
+import {Count} from "../model/count.model";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,7 @@ export class AdminService {
   private _bungalowLibre: ChambreLibre;
   private _bungalowLibres: Array<BungalowLibre>;
   private urladmin = 'http://localhost:8036/api/v1/admin';
+  private _count: Count;
 
   constructor(private http: HttpClient) {
   }
@@ -360,6 +362,47 @@ export class AdminService {
       })
   }
 
+
+  proposeReservationChambre(numero: number) {
+    this.http.put<number>(this.urladmin + '/reservationChambre/proposeReservation/' + numero + '/', this._reservationChambre).subscribe(
+      data => {
+        console.log('good proposition reservation chambre');
+        console.log(data);
+        this.findchambresPropose(this.reservationChambre.dateDebutHelp, this.reservationChambre.dateFinHelp);
+        this.findByReservationChambreEnAttente();
+      }
+      , error => {
+        console.log('error proposition');
+      })
+
+  }
+
+  proposeReservationBungalow(numero: number) {
+    this.http.put<number>(this.urladmin + '/reservationBungalow/proposeReservation/' + numero + '/', this._reservationBungalow).subscribe(
+      data => {
+        console.log('good proposition reservation bungalow');
+        console.log(data);
+        this.findbungalowPropose(this.reservationBungalow.dateDebutHelp, this.reservationBungalow.dateFinHelp);
+        this.findByReservationBungalowEnAttente();
+      }
+      , error => {
+        console.log('error proposition');
+      })
+
+  }
+
+  countReservation() {
+    this.http.get<number>(this.urladmin + '/reservationChambre/countReservation/').subscribe(
+      data => {
+        console.log('count : ' + data);
+        this.count.reservations = data;
+        console.log(this.count.reservations)
+      }
+      , error => {
+        console.log('error countRes');
+      })
+  }
+
   // Getters & Setters//
 
 
@@ -556,32 +599,20 @@ export class AdminService {
     this._bungalowLibres = value;
   }
 
-  proposeReservationChambre(numero: number) {
-    this.http.put<number>(this.urladmin + '/reservationChambre/proposeReservation/' + numero + '/', this._reservationChambre).subscribe(
-      data => {
-        console.log('good proposition reservation chambre');
-        console.log(data);
-        this.findchambresPropose(this.reservationChambre.dateDebutHelp, this.reservationChambre.dateFinHelp);
-        this.findByReservationChambreEnAttente();
-      }
-      , error => {
-        console.log('error proposition');
-      })
 
+  get count(): Count {
+    if(this._count==null){
+      this._count=new Count();
+    }
+    return this._count;
   }
 
-  proposeReservationBungalow(numero: number) {
-    this.http.put<number>(this.urladmin + '/reservationBungalow/proposeReservation/' + numero + '/', this._reservationBungalow).subscribe(
-      data => {
-        console.log('good proposition reservation bungalow');
-        console.log(data);
-        this.findbungalowPropose(this.reservationBungalow.dateDebutHelp, this.reservationBungalow.dateFinHelp);
-        this.findByReservationBungalowEnAttente();
-      }
-      , error => {
-        console.log('error proposition');
-      })
-
+  set count(value: Count) {
+    if(this._count==null){
+      this._count=new Count();
+    }
+    this._count = value;
   }
+
 
 }
