@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+
+.align{
+  text-align: center;
+}
+.fa-calendar-xmark{
+  color:#ff1414;
+
+}
+
+.fa-xmark{
+  color: #ff1414;
+}
+
+.fa-check{
+  color: #2de082;
+}
+.list-att{
+  font-family: Roboto;
+  font-size: 35px;
+  text-underline: #152442;
+  margin-bottom: 15px;
+}
+
+.fa-arrow-up-right-from-square{
+  color: #0324c0;
+}
