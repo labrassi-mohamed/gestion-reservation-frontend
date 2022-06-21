@@ -4,4 +4,5 @@ export class Registration {
   public prenom: string;
   public email: string;
   public telephone: string;
+  public password: string;
 }
